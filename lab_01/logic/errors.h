@@ -1,0 +1,38 @@
+#ifndef ERRORS_H
+#define ERRORS_H
+
+enum errors {
+    SUCCESS,
+    FAILURE,
+
+    FILE_OPEN_ERROR,
+
+    FILE_NULL_ERROR,
+
+    FILE_READ_ERROR,
+
+    FILE_POINTS_COUNT_READ_ERROR,
+    FILE_POINT_READ_ERROR,
+    FILE_POINT_WRITE_ERROR,
+
+    FILE_EDGES_COUNT_READ_ERROR,
+    FILE_EDGE_READ_ERROR,
+    FILE_EDGE_WRITE_ERROR,
+
+    MEMORY_ALLOCATE_ERROR,
+
+    BAD_ACTION_KEY_ERROR,
+
+    ZERO_SCALE_COEF_ERROR,
+
+    NULL_SCENE_ERROR,
+    EMPTY_POINTS_ERROR,
+    EMPTY_EDGES_ERROR,
+    WRONG_EDGE_POINT_ERROR,
+};
+
+using error_e = enum errors;
+
+void error_handler(error_e &error);
+
+#endif // ERRORS_H
