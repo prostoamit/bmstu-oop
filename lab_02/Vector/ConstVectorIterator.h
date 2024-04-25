@@ -13,11 +13,11 @@ template<NumberType Type>
 class Vector;
 
 template<NumberType Type>
-class ConstVectorIterator : BaseIterator<Type> {
+class ConstVectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
     using pointer           = std::shared_ptr<const Type[]>;
-    using reference         = Type&;
+    using reference         = const Type&;
     using difference_type   = ptrdiff_t;
     using iterator_category = std::random_access_iterator_tag;
 
@@ -30,8 +30,6 @@ public:
     const Type& operator*() const;
     std::shared_ptr<const Type[]> operator->() const;
     const Type& operator[](size_t n) const;
-
-    explicit operator bool() const;
 
     ConstVectorIterator<Type>& operator++();
     ConstVectorIterator<Type> operator++(int);

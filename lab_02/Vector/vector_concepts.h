@@ -5,6 +5,9 @@
 
 #include <cmath>
 
+//template<typename T>
+//concept NumberType = std::is_arithmetic<T>::value;
+
 template<typename T>
 concept NumberType = requires(T a, T b) {
     a + b; a - b; a * b; a / b;

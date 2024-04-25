@@ -13,7 +13,7 @@ template<NumberType Type>
 class Vector;
 
 template<NumberType Type>
-class VectorIterator : BaseIterator<Type> {
+class VectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
     using pointer           = std::shared_ptr<Type>;
@@ -31,8 +31,6 @@ public:
     Type& operator*();
     std::shared_ptr<Type[]> operator->();
     Type& operator[](size_t n);
-
-    operator bool() const;
 
     VectorIterator<Type>& operator++();
     VectorIterator<Type> operator++(int);

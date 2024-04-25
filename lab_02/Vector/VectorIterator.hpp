@@ -86,10 +86,6 @@ Type& VectorIterator<Type>::operator[](size_t n) {
     return (this->get_ptr())[n];
 }
 
-template<NumberType Type>
-VectorIterator<Type>::operator bool() const {
-    return this->ptr.expired();
-}
 
 template<NumberType Type>
 VectorIterator<Type>& 
