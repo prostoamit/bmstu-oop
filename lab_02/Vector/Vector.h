@@ -73,16 +73,17 @@ public:
     template<NumberType OtherType> decltype(auto) operator-(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator-=(const Vector<OtherType>& other);
 
+    // Скалярное умножение векторов.
+    template<NumberType OtherType> decltype(auto) operator&(const Vector<OtherType>& other) const;
+
     // Умножение вектора на число.
-    template<NumberType OtherType> decltype(auto) operator*(OtherType factor) const;
-    template<NumberType OtherType> Vector<Type>& operator*=(OtherType factor);
+    template<NumberType OtherType> decltype(auto) operator*(const OtherType& factor) const;
+    template<NumberType OtherType> Vector<Type>& operator*=(const OtherType& factor);
 
     // Деление вектора на число.
-    template<NumberType OtherType> decltype(auto) operator/(OtherType divider) const;
-    template<NumberType OtherType> Vector<Type>& operator/=(OtherType divider);
+    template<NumberType OtherType> decltype(auto) operator/(const OtherType& divider) const;
+    template<NumberType OtherType> Vector<Type>& operator/=(const OtherType& divider);
 
-    // Скалярное умножение векторов.
-    template<NumberType OtherType> Type operator*(const Vector<OtherType>& other) const;
 
     // Векторное умножение векторов.
     template<NumberType OtherType> decltype(auto) operator^(const Vector<OtherType>& other) const;
