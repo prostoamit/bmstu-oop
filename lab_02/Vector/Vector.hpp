@@ -51,7 +51,7 @@ Vector<Type>::Vector(size_t elements_count, Type *outer_data) {
 }
 
 template<NumberType Type>
-Vector<Type>::Vector(const std::initializer_list<Type>& outer_data) {
+Vector<Type>::Vector(std::initializer_list<Type> outer_data) {
     this->data.reset();
     this->allocate(outer_data.size());
 
@@ -119,7 +119,7 @@ Vector<Type>& Vector<Type>::operator=(Vector<Type>&& tmp_vector) noexcept {
 }
 
 template<NumberType Type>
-Vector<Type>& Vector<Type>::operator=(const std::initializer_list<Type>& outer_data) {
+Vector<Type>& Vector<Type>::operator=(std::initializer_list<Type> outer_data) {
     this->data.reset();
 
     this->allocate(outer_data.size());
@@ -301,7 +301,7 @@ bool Vector<long double>::is_orthogonal(const Vector<OtherType>& other) const {
 
 template<NumberType Type>
 Vector<Type> Vector<Type>::operator-() const {
-    Vector<Type> negative_copy = *this;
+    Vector<Type> negative_copy(*this);
 
     for (auto& element : negative_copy)
         element = -element;

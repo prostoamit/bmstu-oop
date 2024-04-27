@@ -27,7 +27,7 @@ public:
     explicit VectorIterator(const Vector<Type>& vector) noexcept;
 
     VectorIterator<Type>& operator=(const VectorIterator<Type>& other) noexcept;
-
+    // TODO: перегрузить три метода для const.
     Type& operator*();
     std::shared_ptr<Type[]> operator->();
     Type& operator[](size_t n);
@@ -43,6 +43,8 @@ public:
 
     VectorIterator<Type> operator-(ptrdiff_t offset) const;
     VectorIterator<Type>& operator-=(ptrdiff_t offset);
+
+    // TODO: добавить разность итераторов -> difference_type.
 
     bool operator==(const VectorIterator<Type>& other);
     bool operator!=(const VectorIterator<Type>& other);

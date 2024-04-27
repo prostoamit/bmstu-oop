@@ -8,6 +8,7 @@
 //template<typename T>
 //concept NumberType = std::is_arithmetic<T>::value;
 
+// TODO: Посмотреть примеры. Конкретно - обработку литералов.
 template<typename T>
 concept NumberType = requires(T a, T b) {
     a + b; a - b; a * b; a / b;

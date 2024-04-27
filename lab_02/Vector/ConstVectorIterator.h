@@ -24,6 +24,7 @@ public:
     ConstVectorIterator();
     ConstVectorIterator(const ConstVectorIterator<Type>& other) noexcept;
     explicit ConstVectorIterator(const Vector<Type>& vector) noexcept;
+    // TODO: Добавить конструктор из обычного итератора.
 
     ConstVectorIterator<Type>& operator=(const ConstVectorIterator<Type>& other) noexcept;
 
