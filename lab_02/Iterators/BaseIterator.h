@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <cstddef>
+#include "iterator_concept.h"
 
 template<typename T>
 class BaseIterator {

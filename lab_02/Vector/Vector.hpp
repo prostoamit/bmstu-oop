@@ -28,13 +28,13 @@ Vector<Type>::Vector() noexcept{
 }
 
 template<NumberType Type>
-Vector<Type>::Vector(size_t elements_count) {
+Vector<Type>::Vector(size_t elements_count, Type filler) {
     this->data.reset();
     this->allocate(elements_count);
 
     this->_size = elements_count;
     for (auto& i : *this)
-        i = 0;
+        i = filler;
 }
 
 template<NumberType Type>
@@ -87,6 +87,43 @@ Vector<Type>::Vector(const Vector<Type>& other) {
         i = *other_iterator;
 
         other_iterator++;
+    }
+}
+
+template<NumberType Type>
+template<Container ContainerType>
+Vector<Type>::Vector(const ContainerType& container) {
+    typename ContainerType::const_iterator begin = container.begin();
+
+    size_t size = container.size();
+
+    this->data.reset();
+    this->allocate(size);
+
+    this->_size = size;
+    for (auto& i : *this) {
+        i = *begin;
+
+        begin++;
+    }
+}
+
+template<NumberType Type>
+template<Iterator IteratorType>
+Vector<Type>::Vector(const IteratorType& begin, const IteratorType& end) {
+    size_t size = 0;
+    for (IteratorType iterator = begin; iterator != end; iterator++, size++);
+
+    this->data.reset();
+    this->allocate(size);
+
+    this->_size = size;
+    IteratorType iterator = begin;
+
+    for (auto& i : *this) {
+        i = *iterator;
+
+        iterator++;
     }
 }
 

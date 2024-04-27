@@ -11,6 +11,8 @@
 #include "VectorIterator.h"
 #include "ConstVectorIterator.h"
 #include "vector_concepts.h"
+#include "container_concept.h"
+#include "iterator_concept.h"
 
 template<NumberType Type>
 // Убрать virtual в наследовании
@@ -37,7 +39,7 @@ public:
 
     virtual ~Vector() override;
     Vector() noexcept;
-    explicit Vector(size_t elements_count);
+    explicit Vector(size_t elements_count, Type filler = 0);
 
     Vector(size_t elements_count, Type *outer_data);
     // При передаче списка инициализации не нужна константная ссылка.
@@ -47,10 +49,11 @@ public:
     explicit Vector(const Vector<Type>& other);
     Vector(Vector<Type>&& tmp_vector) noexcept;
 
-    // TODO: Добавть конструкторы:
-    //  Из другого контенйрного класса (сделать концепт контейнера);
-    //  Через два итератора;
-    //  С заполнением значением.
+    template<Container ContainerType>
+    explicit Vector(const ContainerType& container);
+
+    template<Iterator IteratorType>
+    Vector(const IteratorType& begin, const IteratorType& end);
 
     Vector<Type>& operator=(const Vector<Type>& other);
     Vector<Type>& operator=(Vector<Type>&& tmp_vector) noexcept;
