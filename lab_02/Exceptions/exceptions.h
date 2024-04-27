@@ -4,6 +4,7 @@
 #include <exception>
 #include <string>
 
+// TODO: Убрать std::string (исключения не ходят парами).
 namespace exceptions {
     class BaseException : public std::exception {
     protected:

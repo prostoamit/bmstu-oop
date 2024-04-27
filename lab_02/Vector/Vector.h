@@ -13,7 +13,9 @@
 #include "vector_concepts.h"
 
 template<NumberType Type>
-class Vector : virtual public BaseContainer {
+// Убрать virtual в наследовании
+class Vector : public BaseContainer {
+// В библиотечном классе private поля убрать в конец.
 private:
     std::shared_ptr<Type[]> data;
 
@@ -21,12 +23,14 @@ private:
 
 public:
     using value_type = Type;
-    using reference = Type&;
-    using cons_reference = const Type&;
+    using size_type = size_t;
     using iterator = VectorIterator<Type>;
     using const_iterator = ConstVectorIterator<Type>;
+
+    // TODO: Излишние убрать.
+    using reference = Type&;
+    using cons_reference = const Type&;
     using difference_type = ptrdiff_t;
-    using size_type = size_t;
 
     friend class VectorIterator<Type>;
     friend class ConstVectorIterator<Type>;
@@ -36,15 +40,24 @@ public:
     explicit Vector(size_t elements_count);
 
     Vector(size_t elements_count, Type *outer_data);
-    Vector(const std::initializer_list<Type>& outer_data);
+    // При передаче списка инициализации не нужна константная ссылка.
+    Vector(std::initializer_list<Type> outer_data);
 
-    Vector(const Vector<Type>& other);
+    // Конструктор копирования должен быть explicit, чтобы нельзя было передать вектор по значению.
+    explicit Vector(const Vector<Type>& other);
     Vector(Vector<Type>&& tmp_vector) noexcept;
 
+    // TODO: Добавть конструкторы:
+    //  Из другого контенйрного класса (сделать концепт контейнера);
+    //  Через два итератора;
+    //  С заполнением значением.
 
     Vector<Type>& operator=(const Vector<Type>& other);
     Vector<Type>& operator=(Vector<Type>&& tmp_vector) noexcept;
-    Vector<Type>& operator=(const std::initializer_list<Type>& outer_data);
+    // При передаче списка инициализации не нужна константная ссылка.
+    Vector<Type>& operator=(std::initializer_list<Type> outer_data);
+
+    // TODO: Добавить присваивание из вектора другого типа.
 
 
     // Обращение к элементу по индексу.
@@ -53,6 +66,7 @@ public:
     Type& operator[](size_t index);
     const Type& operator[](size_t index) const;
 
+    // TODO: Сделать шаблонным, чтобы возвращал не только double/
     double length() const noexcept;
 
     bool is_unit() const noexcept;
@@ -61,6 +75,8 @@ public:
     template<NumberType OtherType> double angle(const Vector<OtherType>& other) const;
     template<NumberType OtherType> bool is_collinear(const Vector<OtherType>& other) const;
     template<NumberType OtherType> bool is_orthogonal(const Vector<OtherType>& other) const;
+
+    // TODO: Добавить копии операторов в виде методов.
 
     // Получение негатива вектора.
     Vector<Type> operator-() const;
@@ -73,22 +89,25 @@ public:
     template<NumberType OtherType> decltype(auto) operator-(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator-=(const Vector<OtherType>& other);
 
+    // Скалярное умножение векторов.
+    template<NumberType OtherType> decltype(auto) operator&(const Vector<OtherType>& other) const;
+
     // Умножение вектора на число.
-    template<NumberType OtherType> decltype(auto) operator*(OtherType factor) const;
-    template<NumberType OtherType> Vector<Type>& operator*=(OtherType factor);
+    template<NumberType OtherType> decltype(auto) operator*(const OtherType& factor) const;
+    template<NumberType OtherType> Vector<Type>& operator*=(const OtherType& factor);
 
     // Деление вектора на число.
-    template<NumberType OtherType> decltype(auto) operator/(OtherType divider) const;
-    template<NumberType OtherType> Vector<Type>& operator/=(OtherType divider);
+    template<NumberType OtherType> decltype(auto) operator/(const OtherType& divider) const;
+    template<NumberType OtherType> Vector<Type>& operator/=(const OtherType& divider);
 
-    // Скалярное умножение векторов.
-    template<NumberType OtherType> Type operator*(const Vector<OtherType>& other) const;
 
     // Векторное умножение векторов.
     template<NumberType OtherType> decltype(auto) operator^(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator^=(const Vector<OtherType>& other);
 
     template<NumberType OtherType> bool operator==(const Vector<OtherType>& other) const;
+
+    // TODO: Начиная с c++20 != можно не объявлять, если есть ==.
     template<NumberType OtherType> bool operator!=(const Vector<OtherType>& other) const;
     template<NumberType OtherType> decltype(auto) operator<=>(const Vector<OtherType>& other) const;
 
@@ -99,7 +118,7 @@ public:
     ConstVectorIterator<Type> cbegin() const noexcept;
     ConstVectorIterator<Type> cend() const noexcept;
 
-
+    // TODO: Вынести реализацию.
     friend std::ostream& operator<<(std::ostream& out_stream, const Vector<Type>& vector) {
         for (auto i : vector)
             std::cout << i << ' ';

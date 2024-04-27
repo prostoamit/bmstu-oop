@@ -51,7 +51,7 @@ Vector<Type>::Vector(size_t elements_count, Type *outer_data) {
 }
 
 template<NumberType Type>
-Vector<Type>::Vector(const std::initializer_list<Type>& outer_data) {
+Vector<Type>::Vector(std::initializer_list<Type> outer_data) {
     this->data.reset();
     this->allocate(outer_data.size());
 
@@ -119,7 +119,7 @@ Vector<Type>& Vector<Type>::operator=(Vector<Type>&& tmp_vector) noexcept {
 }
 
 template<NumberType Type>
-Vector<Type>& Vector<Type>::operator=(const std::initializer_list<Type>& outer_data) {
+Vector<Type>& Vector<Type>::operator=(std::initializer_list<Type> outer_data) {
     this->data.reset();
 
     this->allocate(outer_data.size());
@@ -245,7 +245,7 @@ double Vector<Type>::angle(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    double scalar_product = double(*this * other);
+    double scalar_product = double(*this & other);
     double length_1 = this->length();
     double length_2 = other.length();
 
@@ -269,7 +269,7 @@ bool Vector<Type>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return (*this * other) == 0;
+    return (*this & other) == 0;
 }
 
 template<>
@@ -278,7 +278,7 @@ bool Vector<float>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabsf(*this * other) < FLT_EPSILON;
+    return fabsf(*this & other) < FLT_EPSILON;
 }
 
 template<>
@@ -287,7 +287,7 @@ bool Vector<double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabs(*this * other) < DBL_EPSILON;
+    return fabs(*this & other) < DBL_EPSILON;
 }
 
 template<>
@@ -296,12 +296,12 @@ bool Vector<long double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabsl(*this * other) < LDBL_EPSILON;
+    return fabsl(*this & other) < LDBL_EPSILON;
 }
 
 template<NumberType Type>
 Vector<Type> Vector<Type>::operator-() const {
-    Vector<Type> negative_copy = *this;
+    Vector<Type> negative_copy(*this);
 
     for (auto& element : negative_copy)
         element = -element;
@@ -386,7 +386,7 @@ Vector<Type>& Vector<Type>::operator-=(const Vector<OtherType>& other) {
 
 template<NumberType Type>
 template<NumberType OtherType>
-decltype(auto) Vector<Type>::operator*(OtherType factor) const {
+decltype(auto) Vector<Type>::operator*(const OtherType& factor) const {
 
     Vector<decltype(this->at(0) * factor)> product(this->_size);
 
@@ -403,7 +403,7 @@ decltype(auto) Vector<Type>::operator*(OtherType factor) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
-Vector<Type>& Vector<Type>::operator*=(OtherType factor) {
+Vector<Type>& Vector<Type>::operator*=(const OtherType& factor) {
     for (auto& i : *this)
         i *= factor;
 
@@ -411,31 +411,31 @@ Vector<Type>& Vector<Type>::operator*=(OtherType factor) {
 }
 
 template<NumberType Type>
-bool _is_zero(Type& value);
+bool _is_zero(const Type& value);
 
 template<NumberType Type>
-bool _is_zero(Type& value) {
+bool _is_zero(const Type& value) {
     return value == 0;
 }
 
 template<>
-bool _is_zero(float& value) {
+bool _is_zero(const float& value) {
     return fabsf(value) < FLT_EPSILON;
 }
 
 template<>
-bool _is_zero(double& value) {
+bool _is_zero(const double& value) {
     return fabs(value) < DBL_EPSILON;
 }
 
 template<>
-bool _is_zero(long double& value) {
+bool _is_zero(const long double& value) {
     return fabsl(value) < LDBL_EPSILON;
 }
 
 template<NumberType Type>
 template<NumberType OtherType>
-decltype(auto) Vector<Type>::operator/(OtherType divider) const {
+decltype(auto) Vector<Type>::operator/(const OtherType& divider) const {
     if (_is_zero(divider))
         throw exceptions::DivisionByZeroException(__FILE__, __LINE__, "Dividing vector by zero error.");
 
@@ -454,7 +454,7 @@ decltype(auto) Vector<Type>::operator/(OtherType divider) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
-Vector<Type>& Vector<Type>::operator/=(OtherType divider) {
+Vector<Type>& Vector<Type>::operator/=(const OtherType& divider) {
     if (_is_zero(divider))
         throw exceptions::DivisionByZeroException(__FILE__, __LINE__, "Dividing vector by zero error.");
 
@@ -466,7 +466,7 @@ Vector<Type>& Vector<Type>::operator/=(OtherType divider) {
 
 template<NumberType Type>
 template<NumberType OtherType>
-Type Vector<Type>::operator*(const Vector<OtherType>& other) const {
+decltype(auto) Vector<Type>::operator&(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Scalar multiplication is impossible.");
 

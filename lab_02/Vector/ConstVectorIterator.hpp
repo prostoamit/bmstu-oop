@@ -76,11 +76,6 @@ const Type& ConstVectorIterator<Type>::operator[](size_t n) const {
 }
 
 template<NumberType Type>
-ConstVectorIterator<Type>::operator bool() const {
-    return bool(this->ptr);
-}
-
-template<NumberType Type>
 ConstVectorIterator<Type>&
 ConstVectorIterator<Type>::operator++() {
     ++index;

@@ -13,7 +13,7 @@ template<NumberType Type>
 class Vector;
 
 template<NumberType Type>
-class VectorIterator : BaseIterator<Type> {
+class VectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
     using pointer           = std::shared_ptr<Type>;
@@ -27,12 +27,10 @@ public:
     explicit VectorIterator(const Vector<Type>& vector) noexcept;
 
     VectorIterator<Type>& operator=(const VectorIterator<Type>& other) noexcept;
-
+    // TODO: перегрузить три метода для const.
     Type& operator*();
     std::shared_ptr<Type[]> operator->();
     Type& operator[](size_t n);
-
-    operator bool() const;
 
     VectorIterator<Type>& operator++();
     VectorIterator<Type> operator++(int);
@@ -45,6 +43,8 @@ public:
 
     VectorIterator<Type> operator-(ptrdiff_t offset) const;
     VectorIterator<Type>& operator-=(ptrdiff_t offset);
+
+    // TODO: добавить разность итераторов -> difference_type.
 
     bool operator==(const VectorIterator<Type>& other);
     bool operator!=(const VectorIterator<Type>& other);

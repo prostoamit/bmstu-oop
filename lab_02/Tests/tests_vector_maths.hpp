@@ -296,7 +296,7 @@ TEST(vector_maths, scalar_multiplication_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 * vector_2, exceptions::DifferentVectorSizeException);
+    EXPECT_THROW(vector_1 & vector_2, exceptions::DifferentVectorSizeException);
 }
 
 TEST(vector_maths, scalar_multiplication) {
@@ -309,7 +309,7 @@ TEST(vector_maths, scalar_multiplication) {
     Vector<int> term_1(reference_size, term_1_reference);
     Vector<int> term_2(reference_size, term_2_reference);
 
-    double result = term_1 * term_2;
+    double result = term_1 & term_2;
 
     EXPECT_DOUBLE_EQ(result, result_reference);
 }

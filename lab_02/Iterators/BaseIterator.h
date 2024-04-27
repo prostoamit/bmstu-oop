@@ -10,7 +10,10 @@ protected:
     std::weak_ptr<T[]> ptr;
 public:
     virtual ~BaseIterator() = default;
+
+    operator bool() const;
 };
 
+#include "BaseIterator.hpp"
 
 #endif //BASEITERATOR_H
