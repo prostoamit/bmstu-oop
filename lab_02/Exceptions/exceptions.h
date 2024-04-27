@@ -5,6 +5,7 @@
 #include <string>
 
 // TODO: Убрать std::string (исключения не ходят парами).
+// TODO: Добавить уровни исключений (Исключения для Вектора, итератора и т.д.)
 namespace exceptions {
     class BaseException : public std::exception {
     protected:
