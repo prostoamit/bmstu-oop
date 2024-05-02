@@ -17,7 +17,7 @@ TEST(vector_maths, length) {
 
     reference_length = sqrt(reference_length);
 
-    EXPECT_DOUBLE_EQ(test.length(), reference_length);
+    EXPECT_DOUBLE_EQ(test.length<double>(), reference_length);
 }
 
 TEST(vector_maths, is_unit_true) {

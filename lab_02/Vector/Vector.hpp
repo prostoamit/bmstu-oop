@@ -208,8 +208,9 @@ const Type& Vector<Type>::operator[](size_t index) const {
 }
 
 template<NumberType Type>
-double Vector<Type>::length() const noexcept {
-    double square_sum = 0;
+template<NumberType ReturnType>
+ReturnType Vector<Type>::length() const noexcept {
+    ReturnType square_sum = 0;
     for (auto& value : *this)
         square_sum += value * value;
 
@@ -223,17 +224,17 @@ bool Vector<Type>::is_unit() const noexcept {
 
 template<>
 bool Vector<float>::is_unit() const noexcept {
-    return (fabsf(length() - 1.0F) < FLT_EPSILON);
+    return (fabsf(length<float>() - 1.0F) < FLT_EPSILON);
 }
 
 template<>
 bool Vector<double>::is_unit() const noexcept {
-    return (fabs(length() - 1.0) < DBL_EPSILON);
+    return (fabs(length<double>() - 1.0) < DBL_EPSILON);
 }
 
 template<>
 bool Vector<long double>::is_unit() const noexcept {
-    return (fabsl(length() - 1.0L) < LDBL_EPSILON);
+    return (fabsl(length<long double>() - 1.0L) < LDBL_EPSILON);
 }
 
 template<NumberType Type>
@@ -283,8 +284,7 @@ double Vector<Type>::angle(const Vector<OtherType>& other) const {
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     double scalar_product = double(*this & other);
-    double length_1 = this->length<double>();
-    // TODO: Узнать, зачем нужно писать .template length<double>();
+    double length_1 = this->template length<double>();
     double length_2 = other.template length<double>();
 
     double angle_cos = scalar_product / (length_1 * length_2);
@@ -316,7 +316,7 @@ bool Vector<float>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabsf(*this & other) < FLT_EPSILON;
+    return fabsf(*this&  other) < FLT_EPSILON;
 }
 
 template<>
@@ -325,7 +325,7 @@ bool Vector<double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabs(*this & other) < DBL_EPSILON;
+    return fabs(*this&  other) < DBL_EPSILON;
 }
 
 template<>
@@ -334,7 +334,7 @@ bool Vector<long double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
-    return fabsl(*this & other) < LDBL_EPSILON;
+    return fabsl(*this&  other) < LDBL_EPSILON;
 }
 
 template<NumberType Type>

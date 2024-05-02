@@ -58,8 +58,8 @@ public:
     Type& operator[](size_t index);
     const Type& operator[](size_t index) const;
 
-    // TODO: Сделать шаблонным, чтобы возвращал не только double/
-    double length() const noexcept;
+    template<NumberType ReturnType>
+    ReturnType length() const noexcept;
 
     bool is_unit() const noexcept;
     bool is_zero() const noexcept;
