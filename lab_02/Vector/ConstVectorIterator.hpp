@@ -8,7 +8,7 @@ ConstVectorIterator<Type>::ConstVectorIterator() : vector_size(0), index(0) {
 template<NumberType Type>
 void ConstVectorIterator<Type>::deleted_object_check(int line) const {
     if (this->ptr.expired())
-        throw exceptions::VectorIteratorDeletedVectorException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorDeletedVectorException(__FILE__, line);
 }
 
 template<NumberType Type>

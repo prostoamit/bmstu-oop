@@ -70,7 +70,24 @@ Type& VectorIterator<Type>::operator*() {
 }
 
 template<NumberType Type>
+const Type &VectorIterator<Type>::operator*() const {
+    deleted_object_check(__LINE__);
+    out_of_range_check(__LINE__);
+
+    return *(this->get_ptr());
+}
+
+
+template<NumberType Type>
 std::shared_ptr<Type[]> VectorIterator<Type>::operator->() {
+    deleted_object_check(__LINE__);
+    out_of_range_check(__LINE__);
+
+    return this->get_ptr();
+}
+
+template<NumberType Type>
+std::shared_ptr<const Type[]> VectorIterator<Type>::operator->() const {
     deleted_object_check(__LINE__);
     out_of_range_check(__LINE__);
 
@@ -81,11 +98,19 @@ template<NumberType Type>
 Type& VectorIterator<Type>::operator[](size_t n) {
     deleted_object_check(__LINE__);
     if (this->index + n >= this->vector_size)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     return (this->get_ptr())[n];
 }
 
+template<NumberType Type>
+const Type& VectorIterator<Type>::operator[](size_t n) const {
+    deleted_object_check(__LINE__);
+    if (this->index + n >= this->vector_size)
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+
+    return (this->get_ptr())[n];
+}
 
 template<NumberType Type>
 VectorIterator<Type>& 

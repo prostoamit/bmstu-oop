@@ -28,11 +28,15 @@ public:
     explicit VectorIterator(const Vector<Type>& vector) noexcept;
 
     VectorIterator<Type>& operator=(const VectorIterator<Type>& other) noexcept;
-    // TODO: перегрузить три метода для const.
+
     Type& operator*();
+    const Type& operator*() const;
     // TODO: Попробовать поменять [].
     std::shared_ptr<Type[]> operator->();
+    std::shared_ptr<const Type[]> operator->() const;
+
     Type& operator[](size_t n);
+    const Type& operator[](size_t n) const;
 
     VectorIterator<Type>& operator++();
     VectorIterator<Type> operator++(int);
