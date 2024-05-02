@@ -68,39 +68,61 @@ public:
     template<NumberType OtherType> bool is_collinear(const Vector<OtherType>& other) const;
     template<NumberType OtherType> bool is_orthogonal(const Vector<OtherType>& other) const;
 
-    // TODO: Добавить копии операторов в виде методов.
-
     // Получение негатива вектора.
     Vector<Type> operator-() const;
+    Vector<Type> negative() const;
 
     // Поэлементное сложение векторов.
     template<NumberType OtherType> decltype(auto) operator+(const Vector<OtherType>& other) const;
+    template<NumberType OtherType> decltype(auto) add_vector(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator+=(const Vector<OtherType>& other);
+    template<NumberType OtherType> Vector<Type>& add_assign_vector(const Vector<OtherType>& other);
+
+    // Сложение вектора с числом.
+    template<NumberType OtherType> decltype(auto) operator+(const OtherType& summand) const;
+    template<NumberType OtherType> decltype(auto) add_number(const OtherType& summand) const;
+    template<NumberType OtherType> Vector<Type>& operator+=(const OtherType& summand);
+    template<NumberType OtherType> Vector<Type>& add_assign_number(const OtherType& summand);
 
     // Поэлементное вычитание векторов.
     template<NumberType OtherType> decltype(auto) operator-(const Vector<OtherType>& other) const;
+    template<NumberType OtherType> decltype(auto) subtract_vector(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator-=(const Vector<OtherType>& other);
+    template<NumberType OtherType> Vector<Type>& subtract_assign_vector(const Vector<OtherType>& other);
+
+    // Вычитание числа из вектора.
+    template<NumberType OtherType> decltype(auto) operator-(const OtherType& summand) const;
+    template<NumberType OtherType> decltype(auto) subtract_number(const OtherType& summand) const;
+    template<NumberType OtherType> Vector<Type>& operator-=(const OtherType& summand);
+    template<NumberType OtherType> Vector<Type>& subtract_assign_number(const OtherType& summand);
 
     // Скалярное умножение векторов.
     template<NumberType OtherType> decltype(auto) operator&(const Vector<OtherType>& other) const;
+    template<NumberType OtherType> decltype(auto) scalar_multiply(const Vector<OtherType>& other) const;
 
     // Умножение вектора на число.
     template<NumberType OtherType> decltype(auto) operator*(const OtherType& factor) const;
+    template<NumberType OtherType> decltype(auto) multiply_number(const OtherType& factor) const;
     template<NumberType OtherType> Vector<Type>& operator*=(const OtherType& factor);
+    template<NumberType OtherType> Vector<Type>& multiply_assign_number(const OtherType& factor);
 
     // Деление вектора на число.
     template<NumberType OtherType> decltype(auto) operator/(const OtherType& divider) const;
+    template<NumberType OtherType> decltype(auto) divide_number(const OtherType& divider) const;
     template<NumberType OtherType> Vector<Type>& operator/=(const OtherType& divider);
+    template<NumberType OtherType> Vector<Type>& divide_assign_number(const OtherType& divider);
 
 
     // Векторное умножение векторов.
     template<NumberType OtherType> decltype(auto) operator^(const Vector<OtherType>& other) const;
+    template<NumberType OtherType> decltype(auto) vector_multiply(const Vector<OtherType>& other) const;
     template<NumberType OtherType> Vector<Type>& operator^=(const Vector<OtherType>& other);
+    template<NumberType OtherType> Vector<Type>& vector_multiply_assign(const Vector<OtherType>& other);
 
+    // Поэлементное сравнение векторов.
     template<NumberType OtherType> bool operator==(const Vector<OtherType>& other) const;
+    template<NumberType OtherType> bool is_equal(const Vector<OtherType>& other) const;
 
-    // TODO: Начиная с c++20 != можно не объявлять, если есть ==.
-    template<NumberType OtherType> bool operator!=(const Vector<OtherType>& other) const;
     template<NumberType OtherType> decltype(auto) operator<=>(const Vector<OtherType>& other) const;
 
     VectorIterator<Type> begin() noexcept;

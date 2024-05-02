@@ -348,6 +348,11 @@ Vector<Type> Vector<Type>::operator-() const {
 }
 
 template<NumberType Type>
+Vector<Type> Vector<Type>::negative() const {
+    return this->operator-();
+}
+
+template<NumberType Type>
 template<NumberType OtherType>
 decltype(auto) Vector<Type>::operator+(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
@@ -370,6 +375,12 @@ decltype(auto) Vector<Type>::operator+(const Vector<OtherType>& other) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
+decltype(auto) Vector<Type>::add_vector(const Vector<OtherType> &other) const {
+    return this->operator+(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator+=(const Vector<OtherType>& other) {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
@@ -382,6 +393,51 @@ Vector<Type>& Vector<Type>::operator+=(const Vector<OtherType>& other) {
         other_iterator++;
     }
     return *this;
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::add_assign_vector(const Vector<OtherType> &other) {
+    return this->operator+=(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+decltype(auto) Vector<Type>::operator+(const OtherType& summand) const {
+    Vector<decltype((*this)[0] + summand)> sum(this->_size);
+
+    ConstVectorIterator<Type> this_iterator = this->begin();
+
+    for (auto& i : sum) {
+        i = *this_iterator + summand;
+
+        this_iterator++;
+    }
+
+    return sum;
+}
+
+
+template<NumberType Type>
+template<NumberType OtherType>
+decltype(auto) Vector<Type>::add_number(const OtherType &summand) const {
+    return this->operator+(summand);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::operator+=(const OtherType &summand) {
+    for (auto& i : *this)
+        i += summand;
+
+    return *this;
+}
+
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::add_assign_number(const OtherType &summand) {
+    return this->operator+=(summand);
 }
 
 template<NumberType Type>
@@ -407,6 +463,12 @@ decltype(auto) Vector<Type>::operator-(const Vector<OtherType>& other) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
+decltype(auto) Vector<Type>::subtract_vector(const Vector<OtherType> &other) const {
+    return this->operator-(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator-=(const Vector<OtherType>& other) {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
@@ -420,6 +482,51 @@ Vector<Type>& Vector<Type>::operator-=(const Vector<OtherType>& other) {
     }
 
     return *this;
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::subtract_assign_vector(const Vector<OtherType> &other) {
+    return this->operator-=(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+decltype(auto) Vector<Type>::operator-(const OtherType& summand) const {
+    Vector<decltype((*this)[0] + summand)> sum(this->_size);
+
+    ConstVectorIterator<Type> this_iterator = this->begin();
+
+    for (auto& i : sum) {
+        i = *this_iterator - summand;
+
+        this_iterator++;
+    }
+
+    return sum;
+}
+
+
+template<NumberType Type>
+template<NumberType OtherType>
+decltype(auto) Vector<Type>::subtract_number(const OtherType &summand) const {
+    return this->operator-(summand);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::operator-=(const OtherType &summand) {
+    for (auto& i : *this)
+        i -= summand;
+
+    return *this;
+}
+
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::subtract_assign_number(const OtherType &summand) {
+    return this->operator-=(summand);
 }
 
 template<NumberType Type>
@@ -441,11 +548,23 @@ decltype(auto) Vector<Type>::operator*(const OtherType& factor) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
+decltype(auto) Vector<Type>::multiply_number(const OtherType &factor) const {
+    return this->operator*(factor);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator*=(const OtherType& factor) {
     for (auto& i : *this)
         i *= factor;
 
     return *this;
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::multiply_assign_number(const OtherType &factor) {
+    return this->operator*=(factor);
 }
 
 template<NumberType Type>
@@ -492,6 +611,12 @@ decltype(auto) Vector<Type>::operator/(const OtherType& divider) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
+decltype(auto) Vector<Type>::divide_number(const OtherType &divider) const {
+    return this->operator/(divider);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator/=(const OtherType& divider) {
     if (_is_zero(divider))
         throw exceptions::DivisionByZeroException(__FILE__, __LINE__, "Dividing vector by zero error.");
@@ -500,6 +625,12 @@ Vector<Type>& Vector<Type>::operator/=(const OtherType& divider) {
         i /= divider;
 
     return *this;
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type> &Vector<Type>::divide_assign_number(const OtherType &divider) {
+    return this->operator/=(divider);
 }
 
 template<NumberType Type>
@@ -523,7 +654,13 @@ decltype(auto) Vector<Type>::operator&(const Vector<OtherType>& other) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
-decltype(auto) Vector<Type>::operator^(const Vector<OtherType> &other) const {
+decltype(auto) Vector<Type>::scalar_multiply(const Vector<OtherType> &other) const {
+    return this->operator&(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+decltype(auto) Vector<Type>::operator^(const Vector<OtherType>& other) const {
     if (this->_size != 3 || other._size != 3)
         throw vector_exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
 
@@ -538,7 +675,13 @@ decltype(auto) Vector<Type>::operator^(const Vector<OtherType> &other) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
-Vector<Type>& Vector<Type>::operator^=(const Vector<OtherType> &other) {
+decltype(auto) Vector<Type>::vector_multiply(const Vector<OtherType> &other) const {
+    return this->operator^(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type>& Vector<Type>::operator^=(const Vector<OtherType>& other) {
     if (this->_size != 3 || other._size != 3)
         throw vector_exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
 
@@ -553,7 +696,13 @@ Vector<Type>& Vector<Type>::operator^=(const Vector<OtherType> &other) {
 
 template<NumberType Type>
 template<NumberType OtherType>
-bool Vector<Type>::operator==(const Vector<OtherType> &other) const {
+Vector<Type>& Vector<Type>::vector_multiply_assign(const Vector<OtherType> &other) {
+    return this->operator^=(other);
+}
+
+template<NumberType Type>
+template<NumberType OtherType>
+bool Vector<Type>::operator==(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
@@ -574,16 +723,13 @@ bool Vector<Type>::operator==(const Vector<OtherType> &other) const {
 
 template<NumberType Type>
 template<NumberType OtherType>
-bool Vector<Type>::operator!=(const Vector<OtherType> &other) const {
-    if (this->_size != other._size)
-        throw exceptions::DifferentVectorSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
-
-    return !this->operator==(other);
+bool Vector<Type>::is_equal(const Vector<OtherType> &other) const {
+    return this->is_equal(other);
 }
 
 template<NumberType Type>
 template<NumberType OtherType>
-decltype(auto) Vector<Type>::operator<=>(const Vector<OtherType> &other) const {
+decltype(auto) Vector<Type>::operator<=>(const Vector<OtherType>& other) const {
     return this->_size <=> other._size;
 }
 
