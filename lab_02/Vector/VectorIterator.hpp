@@ -200,6 +200,13 @@ VectorIterator<Type>::operator-=(ptrdiff_t offset) {
 }
 
 template<NumberType Type>
+ptrdiff_t VectorIterator<Type>::operator-(const VectorIterator<Type>& other) const {
+    different_vectors_check(__LINE__, other);
+
+    return this->index - other.index;
+}
+
+template<NumberType Type>
 bool VectorIterator<Type>::operator==(const VectorIterator<Type>& other) {
     deleted_object_check(__LINE__);
     different_vectors_check(__LINE__, other);

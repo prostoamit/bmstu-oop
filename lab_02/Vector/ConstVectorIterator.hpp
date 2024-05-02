@@ -148,6 +148,13 @@ ConstVectorIterator<Type>::operator-=(ptrdiff_t offset) {
 }
 
 template<NumberType Type>
+ptrdiff_t ConstVectorIterator<Type>::operator-(const ConstVectorIterator<Type> &other) const {
+    different_vectors_check(__LINE__, other);
+
+    return this->index - other.index;
+}
+
+template<NumberType Type>
 bool ConstVectorIterator<Type>::operator==(const ConstVectorIterator<Type>& other) {
     different_vectors_check(__LINE__, other);
 

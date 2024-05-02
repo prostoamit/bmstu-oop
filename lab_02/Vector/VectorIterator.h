@@ -50,7 +50,7 @@ public:
     VectorIterator<Type> operator-(ptrdiff_t offset) const;
     VectorIterator<Type>& operator-=(ptrdiff_t offset);
 
-    // TODO: добавить разность итераторов -> difference_type.
+    ptrdiff_t operator-(const VectorIterator<Type>& other) const;
 
     bool operator==(const VectorIterator<Type>& other);
     bool operator!=(const VectorIterator<Type>& other);

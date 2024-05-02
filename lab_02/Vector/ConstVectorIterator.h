@@ -46,6 +46,8 @@ public:
     ConstVectorIterator<Type> operator-(ptrdiff_t offset) const;
     ConstVectorIterator<Type>& operator-=(ptrdiff_t offset);
 
+    ptrdiff_t operator-(const ConstVectorIterator<Type>& other) const;
+
     bool operator==(const ConstVectorIterator<Type>& other);
     bool operator!=(const ConstVectorIterator<Type>& other);
 

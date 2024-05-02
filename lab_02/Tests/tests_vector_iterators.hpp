@@ -226,4 +226,34 @@ TEST(const_vector_iterator, from_non_const) {
     EXPECT_EQ(*test_non_const_iterator, *test_const_iterator);
 }
 
+TEST(const_vector_iterator, iteratpr_difference_positive) {
+    const size_t reference_size = 10;
+    int reference[reference_size] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    Vector<int> test_vector(reference_size, reference);
+
+    VectorIterator<int> test_1(test_vector);
+    VectorIterator<int> test_2(test_vector);
+
+    test_1 += 2;
+    test_2 += 8;
+
+    EXPECT_EQ(test_2 - test_1, 8 - 2);
+}
+
+TEST(const_vector_iterator, iteratpr_difference_negative) {
+    const size_t reference_size = 10;
+    int reference[reference_size] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    Vector<int> test_vector(reference_size, reference);
+
+    VectorIterator<int> test_1(test_vector);
+    VectorIterator<int> test_2(test_vector);
+
+    test_1 += 8;
+    test_2 += 2;
+
+    EXPECT_EQ(test_2 - test_1, 2 - 8);
+}
+
 #endif //TESTS_VECTOR_ITERATORS_HPP
