@@ -39,11 +39,15 @@ ConstVectorIterator<Type>::ConstVectorIterator(const ConstVectorIterator<Type>& 
 template<NumberType Type>
 ConstVectorIterator<Type>::ConstVectorIterator(const Vector<Type>& vector) noexcept {
     this->ptr = vector.data;
-    index = 0;
-    vector_size = vector._size;
     this->index = 0;
     this->vector_size = vector._size;
 }
+
+template<NumberType Type>
+ConstVectorIterator<Type>::ConstVectorIterator(const VectorIterator<Type>& non_const_iterator) noexcept {
+    this->ptr = non_const_iterator.ptr;
+    this->index = non_const_iterator.index;
+    this->vector_size = non_const_iterator.vector_size;
 }
 
 template<NumberType Type>

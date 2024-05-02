@@ -13,6 +13,9 @@ template<NumberType Type>
 class Vector;
 
 template<NumberType Type>
+class ConstVectorIterator;
+
+template<NumberType Type>
 class VectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
@@ -53,6 +56,8 @@ public:
     bool operator!=(const VectorIterator<Type>& other);
 
     decltype(auto) operator<=>(const VectorIterator<Type>& other);
+
+    friend class ConstVectorIterator<Type>;
 private:
     size_t vector_size;
     size_t index;
