@@ -1,3 +1,6 @@
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
+
 #include "Vector.h"
 
 #include <cmath>
@@ -807,3 +810,5 @@ std::ostream& operator<<(std::ostream& out_stream, const Vector<Type>& vector) {
 
     return out_stream;
 }
+
+#endif //VECTOR_HPP

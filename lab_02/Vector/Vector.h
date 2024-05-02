@@ -47,7 +47,6 @@ public:
 
     Vector<Type>& operator=(const Vector<Type>& other);
     Vector<Type>& operator=(Vector<Type>&& tmp_vector) noexcept;
-    // При передаче списка инициализации не нужна константная ссылка.
     Vector<Type>& operator=(std::initializer_list<Type> outer_data);
 
     template<NumberType OtherType>

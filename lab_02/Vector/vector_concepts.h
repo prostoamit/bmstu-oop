@@ -27,7 +27,6 @@ concept NumberType =
         Comparable<T, int> &&
         Comparable<T, T> &&
         Constructable<T> &&
-
         requires(T a, T b) {
             { a + b } -> std::convertible_to<T>;
             { a - b } -> std::convertible_to<T>;
