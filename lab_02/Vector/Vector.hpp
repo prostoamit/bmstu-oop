@@ -623,3 +623,11 @@ ConstVectorIterator<Type> Vector<Type>::cend() const noexcept {
     ConstVectorIterator<Type> const_iterator(*this);
     return const_iterator + this->_size;
 }
+
+template<NumberType Type>
+std::ostream& operator<<(std::ostream& out_stream, const Vector<Type>& vector) {
+    for (auto i : vector)
+        std::cout << i << ' ';
+
+    return out_stream;
+}

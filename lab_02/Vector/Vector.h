@@ -122,15 +122,8 @@ public:
     ConstVectorIterator<Type> cbegin() const noexcept;
     ConstVectorIterator<Type> cend() const noexcept;
 
-    // TODO: Вынести реализацию.
-    friend std::ostream& operator<<(std::ostream& out_stream, const Vector<Type>& vector) {
-        for (auto i : vector)
-            std::cout << i << ' ';
-
-        std::cout << std::endl;
-
-        return out_stream;
-    }
+    template<NumberType OtherType>
+    friend std::ostream& operator<<(std::ostream& out_stream, const Vector<OtherType>& vector);
 };
 
 #include "Vector.hpp"
