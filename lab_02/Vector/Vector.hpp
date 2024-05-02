@@ -28,6 +28,14 @@ Vector<Type>::Vector() noexcept{
 }
 
 template<NumberType Type>
+Vector<Type>::Vector(size_t elements_count) {
+    this->data.reset();
+    this->allocate(elements_count);
+
+    this->_size = elements_count;
+}
+
+template<NumberType Type>
 Vector<Type>::Vector(size_t elements_count, Type filler) {
     this->data.reset();
     this->allocate(elements_count);
@@ -176,6 +184,28 @@ Vector<Type>& Vector<Type>::operator=(std::initializer_list<Type> outer_data) {
 }
 
 template<NumberType Type>
+template<NumberType OtherType>
+Vector<Type>& Vector<Type>::operator=(const Vector<OtherType>& other) {
+    if (this->_size != other._size) {
+        std::shared_ptr<Type[]> tmp;
+        try {
+            tmp = std::make_shared<Type[]>(other._size);
+        } catch (std::exception) {
+            throw vector_exceptions::VectorAllocationException(__FILE__, __LINE__ - 2);
+        }
+        this->data = tmp;
+    }
+
+    ConstVectorIterator<OtherType> other_iterator = other.begin();
+
+    for (auto& i : *this) {
+        i = *other_iterator;
+
+        other_iterator++;
+    }
+}
+
+template<NumberType Type>
 Type& Vector<Type>::at(size_t index) {
     if (index >= this->_size)
         throw vector_exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
@@ -212,7 +242,7 @@ template<NumberType ReturnType>
 ReturnType Vector<Type>::length() const noexcept {
     ReturnType square_sum = 0;
     for (auto& value : *this)
-        square_sum += value * value;
+        square_sum += ReturnType(value * value);
 
     return sqrt(square_sum);
 }

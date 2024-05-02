@@ -28,7 +28,8 @@ public:
 
     virtual ~Vector() override;
     Vector() noexcept;
-    explicit Vector(size_t elements_count, Type filler = 0);
+    explicit Vector(size_t elements_count);
+    Vector(size_t elements_count, Type filler);
 
     Vector(size_t elements_count, Type *outer_data);
     // При передаче списка инициализации не нужна константная ссылка.
@@ -49,8 +50,8 @@ public:
     // При передаче списка инициализации не нужна константная ссылка.
     Vector<Type>& operator=(std::initializer_list<Type> outer_data);
 
-    // TODO: Добавить присваивание из вектора другого типа.
-
+    template<NumberType OtherType>
+    Vector<Type>& operator=(const Vector<OtherType>& other);
 
     // Обращение к элементу по индексу.
     Type& at(size_t index);
