@@ -16,6 +16,7 @@ template<NumberType Type>
 class VectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
+    // TODO: Попробовать поменять [].
     using pointer           = std::shared_ptr<Type>;
     using reference         = Type&;
     using difference_type   = ptrdiff_t;
@@ -29,6 +30,7 @@ public:
     VectorIterator<Type>& operator=(const VectorIterator<Type>& other) noexcept;
     // TODO: перегрузить три метода для const.
     Type& operator*();
+    // TODO: Попробовать поменять [].
     std::shared_ptr<Type[]> operator->();
     Type& operator[](size_t n);
 

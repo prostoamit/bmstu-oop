@@ -8,6 +8,7 @@
 template<typename T>
 class BaseIterator {
 protected:
+    // TODO: Попробовать поменять [].
     std::weak_ptr<T[]> ptr;
 public:
     virtual ~BaseIterator() = default;

@@ -283,8 +283,9 @@ double Vector<Type>::angle(const Vector<OtherType>& other) const {
         throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     double scalar_product = double(*this & other);
-    double length_1 = this->length();
-    double length_2 = other.length();
+    double length_1 = this->length<double>();
+    // TODO: Узнать, зачем нужно писать .template length<double>();
+    double length_2 = other.template length<double>();
 
     double angle_cos = scalar_product / (length_1 * length_2);
 

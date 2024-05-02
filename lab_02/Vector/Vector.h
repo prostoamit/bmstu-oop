@@ -19,6 +19,7 @@ template<NumberType Type>
 class Vector : public BaseContainer {
 // В библиотечном классе private поля убрать в конец.
 private:
+    // TODO: Попробовать поменять [].
     std::shared_ptr<Type[]> data;
 
     void allocate(size_t elements_count);
