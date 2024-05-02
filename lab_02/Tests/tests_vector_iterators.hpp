@@ -12,7 +12,7 @@ TEST(vector_iterators, out_of_range_error) {
 
     VectorIterator<int> test = test_vector.end();
 
-    EXPECT_THROW(*test, exceptions::VectorIteratorOutOfRangeException);
+    EXPECT_THROW(*test, vector_iterator_exceptions::VectorIteratorOutOfRangeException);
 }
 
 TEST(vector_iterators, hanging_object_error) {
@@ -24,7 +24,7 @@ TEST(vector_iterators, hanging_object_error) {
 
     delete test_vector;
 
-    EXPECT_THROW(*test, exceptions::VectorIteratorDeletedVectorException);
+    EXPECT_THROW(*test, vector_iterator_exceptions::VectorIteratorDeletedVectorException);
 }
 
 TEST(vector_iterators, bool_true) {
@@ -148,7 +148,7 @@ TEST(vector_iterator, compare_equal_error) {
     VectorIterator<int> test_iterator_1 = test_vector_1.begin();
     VectorIterator<int> test_iterator_2 = test_vector_2.begin();
 
-    EXPECT_THROW(test_iterator_1 == test_iterator_2, exceptions::VectorIteratorDifferentVectorCmpException);
+    EXPECT_THROW(test_iterator_1 == test_iterator_2, vector_iterator_exceptions::VectorIteratorDifferentVectorCmpException);
 }
 
 TEST(vector_iterator, compare_equal_true) {
@@ -211,6 +211,19 @@ TEST(vector_iterator, compare_not_equal_false) {
     test_iterator_2 += 2;
 
     EXPECT_FALSE(test_iterator_1 != test_iterator_2);
+}
+
+TEST(const_vector_iterator, from_non_const) {
+    const size_t reference_size = 3;
+    int reference[reference_size] = {0, 1, 2};
+
+    Vector<int> test_vector(reference_size, reference);
+
+    VectorIterator<int> test_non_const_iterator(test_vector);
+
+    ConstVectorIterator<int> test_const_iterator(test_non_const_iterator);
+
+    EXPECT_EQ(*test_non_const_iterator, *test_const_iterator);
 }
 
 #endif //TESTS_VECTOR_ITERATORS_HPP

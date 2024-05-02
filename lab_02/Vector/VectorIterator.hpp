@@ -8,19 +8,19 @@ VectorIterator<Type>::VectorIterator() : vector_size(0), index(0) {
 template<NumberType Type>
 void VectorIterator<Type>::deleted_object_check(int line) const {
     if (this->ptr.expired())
-        throw exceptions::VectorIteratorDeletedVectorException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorDeletedVectorException(__FILE__, line);
 }
 
 template<NumberType Type>
 void VectorIterator<Type>::out_of_range_check(int line) const {
     if (index >= vector_size)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, line);
 }
 
 template<NumberType Type>
 void VectorIterator<Type>::different_vectors_check(int line, const VectorIterator<Type>& other) const {
     if (this->ptr.lock() != other.ptr.lock())
-        throw exceptions::VectorIteratorDifferentVectorCmpException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorDifferentVectorCmpException(__FILE__, line);
 }
 
 template<NumberType Type>
@@ -132,7 +132,7 @@ VectorIterator<Type>&
 VectorIterator<Type>::operator--() {
     deleted_object_check(__LINE__);
     if (this->index == 0)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     --(this->index);
 
@@ -144,7 +144,7 @@ VectorIterator<Type>
 VectorIterator<Type>::operator--(int) {
     deleted_object_check(__LINE__);
     if (this->index == 0)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     VectorIterator<Type> tmp = *this;
 

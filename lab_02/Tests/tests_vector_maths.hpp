@@ -36,7 +36,7 @@ TEST(vector_maths, angle_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1.angle(vector_2), exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1.angle(vector_2), vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, angle) {
@@ -55,7 +55,7 @@ TEST(vector_maths, is_collinear_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1.is_collinear(vector_2), exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1.is_collinear(vector_2), vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, is_collinear_true) {
@@ -80,7 +80,7 @@ TEST(vector_maths, is_othogonal_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1.is_orthogonal(vector_2), exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1.is_orthogonal(vector_2), vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, is_orthogonal_true) {
@@ -115,7 +115,7 @@ TEST(vector_maths, addition_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 + vector_2, exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1 + vector_2, vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, addition) {
@@ -139,7 +139,7 @@ TEST(vector_maths, addition_assign_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 += vector_2, exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1 += vector_2, vector_exceptions::VectorDifferentSizeException);
 }
 
 
@@ -164,7 +164,7 @@ TEST(vector_maths, subtraction_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 - vector_2, exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1 - vector_2, vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, subtraction) {
@@ -188,7 +188,7 @@ TEST(vector_maths, subtraction_assign_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 -= vector_2, exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1 -= vector_2, vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, subtraction_assign) {
@@ -296,7 +296,7 @@ TEST(vector_maths, scalar_multiplication_different_sizes_error) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 & vector_2, exceptions::VectorDifferentSizeException);
+    EXPECT_THROW(vector_1 & vector_2, vector_exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_maths, scalar_multiplication) {
@@ -318,7 +318,7 @@ TEST(vector_maths, vector_multiplication_not_3_dimentional) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 ^ vector_2, exceptions::VectorUnableVectorMultiplicationException);
+    EXPECT_THROW(vector_1 ^ vector_2, vector_exceptions::VectorUnableVectorMultiplicationException);
 }
 
 TEST(vector_maths, vector_multiplication) {
@@ -342,7 +342,7 @@ TEST(vector_maths, vector_multiplication_assign_not_3_dimentional) {
     Vector<double> vector_1 = {1.0, 0.0, 0.0};
     Vector<double> vector_2 = {0.0, 1.0, 0.0, 12.0, 3.0};
 
-    EXPECT_THROW(vector_1 ^ vector_2, exceptions::VectorUnableVectorMultiplicationException);
+    EXPECT_THROW(vector_1 ^ vector_2, vector_exceptions::VectorUnableVectorMultiplicationException);
 }
 
 TEST(vector_maths, vector_multiplication_assign) {

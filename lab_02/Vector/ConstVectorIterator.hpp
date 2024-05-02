@@ -14,13 +14,13 @@ void ConstVectorIterator<Type>::deleted_object_check(int line) const {
 template<NumberType Type>
 void ConstVectorIterator<Type>::out_of_range_check(int line) const {
     if (index >= vector_size)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, line);
 }
 
 template<NumberType Type>
 void ConstVectorIterator<Type>::different_vectors_check(int line, const ConstVectorIterator<Type>& other) const {
     if (this->ptr.lock() != other.ptr.lock())
-        throw exceptions::VectorIteratorDifferentVectorCmpException(__FILE__, line);
+        throw vector_iterator_exceptions::VectorIteratorDifferentVectorCmpException(__FILE__, line);
 }
 
 template<NumberType Type>
@@ -69,8 +69,8 @@ std::shared_ptr<const Type[]> ConstVectorIterator<Type>::operator->() const {
 template<NumberType Type>
 const Type& ConstVectorIterator<Type>::operator[](size_t n) const {
     deleted_object_check(__LINE__);
-    if (index + n >= vector_size)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+    if (this->index + n >= this->vector_size)
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     return (this->get_ptr())[n];
 }
@@ -112,7 +112,7 @@ template<NumberType Type>
 ConstVectorIterator<Type>&
 ConstVectorIterator<Type>::operator--() {
     if (index == 0)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     return *this;
 }
@@ -121,7 +121,7 @@ template<NumberType Type>
 ConstVectorIterator<Type>
 ConstVectorIterator<Type>::operator--(int) {
     if (index == 0)
-        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_iterator_exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     ConstVectorIterator<Type> tmp = *this;
 

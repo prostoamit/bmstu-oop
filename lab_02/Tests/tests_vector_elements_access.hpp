@@ -21,7 +21,7 @@ TEST(vector_elements_access, at_error) {
     int reference[reference_size] = {67, -1000, 23, 45, 12};
     Vector<int> test(reference_size, reference);
 
-    EXPECT_THROW(test.at(reference_size + 1), exceptions::VectorOutOfRangeException);
+    EXPECT_THROW(test.at(reference_size + 1), vector_exceptions::VectorOutOfRangeException);
 }
 
 TEST(vector_elements_access, subscript_operator_correct) {
@@ -40,7 +40,7 @@ TEST(vector_elements_access, subscript_operator_error) {
     int reference[reference_size] = {67, -1000, 23, 45, 12};
     Vector<int> test(reference_size, reference);
 
-    EXPECT_THROW(test[reference_size + 1], exceptions::OutOfRangeException);
+    EXPECT_THROW(test[reference_size + 1], vector_exceptions::VectorOutOfRangeException);
 }
 
 #endif //TESTS_VECTOR_ELEMENTS_ACCESS_HPP

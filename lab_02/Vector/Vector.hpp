@@ -10,7 +10,7 @@ void Vector<Type>::allocate(size_t elements_count) {
     try {
         tmp = std::make_shared<Type[]>(elements_count);
     } catch (std::exception) {
-        throw exceptions::VectorAllocationException(__FILE__, __LINE__ - 2);
+        throw vector_exceptions::VectorAllocationException(__FILE__, __LINE__ - 2);
     }
 
     this->data = tmp;
@@ -178,7 +178,7 @@ Vector<Type>& Vector<Type>::operator=(std::initializer_list<Type> outer_data) {
 template<NumberType Type>
 Type& Vector<Type>::at(size_t index) {
     if (index >= this->_size)
-        throw exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
 
     return this->data[index];
 }
@@ -186,7 +186,7 @@ Type& Vector<Type>::at(size_t index) {
 template<NumberType Type>
 const Type& Vector<Type>::at(size_t index) const {
     if (index >= this->_size)
-        throw exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
 
     return this->data[index];
 }
@@ -194,7 +194,7 @@ const Type& Vector<Type>::at(size_t index) const {
 template<NumberType Type>
 Type& Vector<Type>::operator[](size_t index) {
     if (index >= this->_size)
-        throw exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
 
     return this->data[index];
 }
@@ -202,7 +202,7 @@ Type& Vector<Type>::operator[](size_t index) {
 template<NumberType Type>
 const Type& Vector<Type>::operator[](size_t index) const {
     if (index >= this->_size)
-        throw exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorOutOfRangeException(__FILE__, __LINE__);
 
     return this->data[index];
 }
@@ -280,7 +280,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 double Vector<Type>::angle(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     double scalar_product = double(*this & other);
     double length_1 = this->length();
@@ -295,7 +295,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 bool Vector<Type>::is_collinear(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     return (*this ^ other).is_zero();
 }
@@ -304,7 +304,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 bool Vector<Type>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     return (*this & other) == 0;
 }
@@ -313,7 +313,7 @@ template<>
 template<NumberType OtherType>
 bool Vector<float>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     return fabsf(*this & other) < FLT_EPSILON;
 }
@@ -322,7 +322,7 @@ template<>
 template<NumberType OtherType>
 bool Vector<double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     return fabs(*this & other) < DBL_EPSILON;
 }
@@ -331,7 +331,7 @@ template<>
 template<NumberType OtherType>
 bool Vector<long double>::is_orthogonal(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     return fabsl(*this & other) < LDBL_EPSILON;
 }
@@ -350,7 +350,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 decltype(auto) Vector<Type>::operator+(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     Vector<decltype((*this)[0] + other[0])> sum(this->_size);
 
@@ -371,7 +371,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator+=(const Vector<OtherType>& other) {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     ConstVectorIterator<OtherType> other_iterator = other.begin();
 
@@ -387,7 +387,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 decltype(auto) Vector<Type>::operator-(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     Vector<decltype((*this)[0] - other[0])> difference(this->_size);
 
@@ -408,7 +408,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator-=(const Vector<OtherType>& other) {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     ConstVectorIterator<OtherType> other_iterator = other.begin();
 
@@ -505,7 +505,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 decltype(auto) Vector<Type>::operator&(const Vector<OtherType>& other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Scalar multiplication is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Scalar multiplication is impossible.");
 
     decltype(this->at(0) * other.at(0) + this->at(0) * other.at(0)) result = 0;
 
@@ -524,7 +524,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 decltype(auto) Vector<Type>::operator^(const Vector<OtherType> &other) const {
     if (this->_size != 3 || other._size != 3)
-        throw exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
 
     Vector<decltype(this->at(0) * other.at(0))> result = {
             this->at(1) * other.at(2) - this->at(2) * other.at(1),  // AyBz - AzBy
@@ -539,7 +539,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 Vector<Type>& Vector<Type>::operator^=(const Vector<OtherType> &other) {
     if (this->_size != 3 || other._size != 3)
-        throw exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
+        throw vector_exceptions::VectorUnableVectorMultiplicationException(__FILE__, __LINE__);
 
     *this = {
             this->at(1) * other.at(2) - this->at(2) * other.at(1),  // AyBz - AzBy
@@ -554,7 +554,7 @@ template<NumberType Type>
 template<NumberType OtherType>
 bool Vector<Type>::operator==(const Vector<OtherType> &other) const {
     if (this->_size != other._size)
-        throw exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
+        throw vector_exceptions::VectorDifferentSizeException(__FILE__, __LINE__, "Different vector sizes. Addition is impossible.");
 
     bool is_equal = true;
 

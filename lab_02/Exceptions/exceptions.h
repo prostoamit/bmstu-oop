@@ -13,7 +13,7 @@ namespace exceptions {
     public:
         BaseException() = default;
 
-        const char* what() const noexcept override;
+        virtual const char* what() const noexcept override;
 
         virtual ~BaseException() = default;
     };
