@@ -39,7 +39,7 @@ Vector<Type>::Vector(size_t elements_count) {
 }
 
 template<NumberType Type>
-Vector<Type>::Vector(size_t elements_count, Type filler) {
+Vector<Type>::Vector(size_t elements_count, const Type& filler) {
     this->data.reset();
     this->allocate(elements_count);
 

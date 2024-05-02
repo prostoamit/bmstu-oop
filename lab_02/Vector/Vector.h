@@ -28,7 +28,7 @@ public:
     virtual ~Vector() override;
     Vector() noexcept;
     explicit Vector(size_t elements_count);
-    Vector(size_t elements_count, Type filler);
+    Vector(size_t elements_count, const Type& filler);
 
     Vector(size_t elements_count, Type *outer_data);
     Vector(std::initializer_list<Type> outer_data);
