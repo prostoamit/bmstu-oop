@@ -6,7 +6,7 @@
 
 #include "BaseIterator.h"
 
-#include "Exceptions/exceptions.h"
+#include "vector_iterator_exceptions.h"
 #include "vector_concepts.h"
 
 template<NumberType Type>

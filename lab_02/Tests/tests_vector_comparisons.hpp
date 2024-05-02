@@ -9,14 +9,14 @@ TEST(vector_comparisons, equals_different_sizes_error) {
     Vector<int> vector_1 = {1, 3, 5};
     Vector<int> vector_2 = {1, 3, 5, 6, 1};
 
-    EXPECT_THROW(vector_1 == vector_2, exceptions::DifferentVectorSizeException);
+    EXPECT_THROW(vector_1 == vector_2, exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_comparisons, not_equals_different_sizes_error) {
     Vector<int> vector_1 = {1, 3, 5};
     Vector<int> vector_2 = {1, 3, 5, 6, 1};
 
-    EXPECT_THROW(vector_1 != vector_2, exceptions::DifferentVectorSizeException);
+    EXPECT_THROW(vector_1 != vector_2, exceptions::VectorDifferentSizeException);
 }
 
 TEST(vector_comparisons, equals_true_int) {

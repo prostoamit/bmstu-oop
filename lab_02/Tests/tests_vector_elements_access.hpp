@@ -2,7 +2,7 @@
 #define TESTS_VECTOR_ELEMENTS_ACCESS_HPP
 
 #include "Vector.h"
-#include "exceptions.h"
+#include "vector_exceptions.h"
 #include <gtest/gtest.h>
 
 TEST(vector_elements_access, at_correct) {
@@ -21,7 +21,7 @@ TEST(vector_elements_access, at_error) {
     int reference[reference_size] = {67, -1000, 23, 45, 12};
     Vector<int> test(reference_size, reference);
 
-    EXPECT_THROW(test.at(reference_size + 1), exceptions::OutOfRangeException);
+    EXPECT_THROW(test.at(reference_size + 1), exceptions::VectorOutOfRangeException);
 }
 
 TEST(vector_elements_access, subscript_operator_correct) {

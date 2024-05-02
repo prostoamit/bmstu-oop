@@ -4,12 +4,12 @@
 #include <exception>
 #include <string>
 
-// TODO: Убрать std::string (исключения не ходят парами).
-// TODO: Добавить уровни исключений (Исключения для Вектора, итератора и т.д.)
 namespace exceptions {
+    const size_t BUFFER_SIZE = 256;
+
     class BaseException : public std::exception {
     protected:
-        std::string message;
+        char message[BUFFER_SIZE];
     public:
         BaseException() = default;
 
@@ -20,37 +20,7 @@ namespace exceptions {
 
     class DivisionByZeroException : public BaseException {
     public:
-        DivisionByZeroException(const std::string &filename, int line, std::string error_message = "Division by zero error.");
-    };
-
-    class MemoryAllocationException : public BaseException {
-    public:
-        MemoryAllocationException(const std::string &filename, int line, std::string error_message = "Memory allocation error.");
-    };
-
-    class DeletedObjectException : public BaseException {
-    public:
-        DeletedObjectException(const std::string &filename, int line, std::string error_message = "Deleted object error.");
-    };
-
-    class OutOfRangeException : public BaseException {
-    public:
-        OutOfRangeException(const std::string &filename, int line, std::string error_message = "Out of range error.");
-    };
-
-    class DifferentVectorIteratorCmpException : public BaseException {
-    public:
-        DifferentVectorIteratorCmpException(const std::string &filename, int line, std::string error_message = "Comparing iterators of different vectors error.");
-    };
-
-    class DifferentVectorSizeException : public BaseException {
-    public:
-        DifferentVectorSizeException(const std::string &filename, int line, std::string error_message = "Vectors have different sizes. Operation is impossible.");
-    };
-
-    class UnableVectorMultiplicationException : public BaseException {
-    public:
-        UnableVectorMultiplicationException(const std::string &filename, int line, std::string error_message = "Vectors have different sizes. Operation is impossible.");
+        DivisionByZeroException(const char *filename, int line, const char *error_message = "Division by zero error.");
     };
 }
 

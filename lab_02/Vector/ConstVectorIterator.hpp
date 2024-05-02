@@ -8,19 +8,19 @@ ConstVectorIterator<Type>::ConstVectorIterator() : vector_size(0), index(0) {
 template<NumberType Type>
 void ConstVectorIterator<Type>::deleted_object_check(int line) const {
     if (this->ptr.expired())
-        throw exceptions::DeletedObjectException(__FILE__, line);
+        throw exceptions::VectorIteratorDeletedVectorException(__FILE__, line);
 }
 
 template<NumberType Type>
 void ConstVectorIterator<Type>::out_of_range_check(int line) const {
     if (index >= vector_size)
-        throw exceptions::OutOfRangeException(__FILE__, line);
+        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, line);
 }
 
 template<NumberType Type>
 void ConstVectorIterator<Type>::different_vectors_check(int line, const ConstVectorIterator<Type>& other) const {
     if (this->ptr.lock() != other.ptr.lock())
-        throw exceptions::DifferentVectorIteratorCmpException(__FILE__, line);
+        throw exceptions::VectorIteratorDifferentVectorCmpException(__FILE__, line);
 }
 
 template<NumberType Type>
@@ -70,7 +70,7 @@ template<NumberType Type>
 const Type& ConstVectorIterator<Type>::operator[](size_t n) const {
     deleted_object_check(__LINE__);
     if (index + n >= vector_size)
-        throw exceptions::OutOfRangeException(__FILE__, __LINE__);
+        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     return (this->get_ptr())[n];
 }
@@ -112,7 +112,7 @@ template<NumberType Type>
 ConstVectorIterator<Type>&
 ConstVectorIterator<Type>::operator--() {
     if (index == 0)
-        throw exceptions::OutOfRangeException(__FILE__, __LINE__);
+        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     return *this;
 }
@@ -121,7 +121,7 @@ template<NumberType Type>
 ConstVectorIterator<Type>
 ConstVectorIterator<Type>::operator--(int) {
     if (index == 0)
-        throw exceptions::OutOfRangeException(__FILE__, __LINE__);
+        throw exceptions::VectorIteratorOutOfRangeException(__FILE__, __LINE__);
 
     ConstVectorIterator<Type> tmp = *this;
 

@@ -2,7 +2,7 @@
 #define TESTS_VECTOR_ITERATORS_HPP
 
 #include "Vector.h"
-#include "exceptions.h"
+#include "vector_iterator_exceptions.h"
 #include <gtest/gtest.h>
 
 TEST(vector_iterators, out_of_range_error) {
@@ -12,7 +12,7 @@ TEST(vector_iterators, out_of_range_error) {
 
     VectorIterator<int> test = test_vector.end();
 
-    EXPECT_THROW(*test, exceptions::OutOfRangeException);
+    EXPECT_THROW(*test, exceptions::VectorIteratorOutOfRangeException);
 }
 
 TEST(vector_iterators, hanging_object_error) {
@@ -24,7 +24,7 @@ TEST(vector_iterators, hanging_object_error) {
 
     delete test_vector;
 
-    EXPECT_THROW(*test, exceptions::DeletedObjectException);
+    EXPECT_THROW(*test, exceptions::VectorIteratorDeletedVectorException);
 }
 
 TEST(vector_iterators, bool_true) {
@@ -148,7 +148,7 @@ TEST(vector_iterator, compare_equal_error) {
     VectorIterator<int> test_iterator_1 = test_vector_1.begin();
     VectorIterator<int> test_iterator_2 = test_vector_2.begin();
 
-    EXPECT_THROW(test_iterator_1 == test_iterator_2, exceptions::DifferentVectorIteratorCmpException);
+    EXPECT_THROW(test_iterator_1 == test_iterator_2, exceptions::VectorIteratorDifferentVectorCmpException);
 }
 
 TEST(vector_iterator, compare_equal_true) {
