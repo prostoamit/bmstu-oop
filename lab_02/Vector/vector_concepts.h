@@ -8,18 +8,31 @@
 //template<typename T>
 //concept NumberType = std::is_arithmetic<T>::value;
 
-// TODO: Посмотреть примеры. Конкретно - обработку литералов.
-template<typename T>
-concept NumberType = requires(T a, T b) {
-    a + b; a - b; a * b; a / b;
-    sqrt(a);
-    a + 0; a - 0; a * 0; a / 1;
-    a + 0.0; a - 0.0; a * 0.0; a / 1.0;
-    a = 0;
-    a = 0.0;
-    a <=> b;
-    a == 0;
-    a == 0.0;
+template<typename From, typename To>
+concept Assignable = requires(From a, To b) { a = b; };
+
+template <typename From, typename To>
+concept Convertable = std::convertible_to<From, To>;
+
+template<typename T, typename U>
+concept Comparable = requires(T a, U b) {
+    {a == b} -> std::convertible_to<bool>;
 };
+
+template <typename T>
+concept Constructable = std::is_default_constructible_v<T>;
+
+template<typename T>
+concept NumberType =
+        Comparable<T, int> &&
+        Comparable<T, T> &&
+        Constructable<T> &&
+
+        requires(T a, T b) {
+            { a + b } -> std::convertible_to<T>;
+            { a - b } -> std::convertible_to<T>;
+            { a * b } -> std::convertible_to<T>;
+            { a / b } -> std::convertible_to<T>;
+        };
 
 #endif //VECTOR_CONCEPTS_H
