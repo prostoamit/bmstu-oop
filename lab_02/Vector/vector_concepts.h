@@ -20,7 +20,7 @@ concept Comparable = requires(T a, U b) {
 };
 
 template <typename T>
-concept Constructable = std::is_default_constructible_v<T>;
+concept Constructable = std::semiregular<T>;
 
 template<typename T>
 concept NumberType =
