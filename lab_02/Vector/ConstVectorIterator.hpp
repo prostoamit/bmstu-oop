@@ -32,8 +32,8 @@ Type* ConstVectorIterator<Type>::get_ptr() const {
 template<NumberType Type>
 ConstVectorIterator<Type>::ConstVectorIterator(const ConstVectorIterator<Type>& other) noexcept {
     this->ptr = other.ptr;
-    index = other.index;
-    vector_size = other.vector_size;
+    this->index = other.index;
+    this->vector_size = other.vector_size;
 }
 
 template<NumberType Type>
@@ -41,13 +41,16 @@ ConstVectorIterator<Type>::ConstVectorIterator(const Vector<Type>& vector) noexc
     this->ptr = vector.data;
     index = 0;
     vector_size = vector._size;
+    this->index = 0;
+    this->vector_size = vector._size;
+}
 }
 
 template<NumberType Type>
 ConstVectorIterator<Type>& ConstVectorIterator<Type>::operator=(const ConstVectorIterator<Type>& other) noexcept {
     this->ptr = other.ptr;
-    index = other.index;
-    vector_size = other.vector_size;
+    this->index = other.index;
+    this->vector_size = other.vector_size;
 }
 
 template<NumberType Type>
@@ -59,7 +62,7 @@ const Type& ConstVectorIterator<Type>::operator*() const {
 }
 
 template<NumberType Type>
-std::shared_ptr<const Type[]> ConstVectorIterator<Type>::operator->() const {
+const Type* ConstVectorIterator<Type>::operator->() const {
     deleted_object_check(__LINE__);
     out_of_range_check(__LINE__);
 

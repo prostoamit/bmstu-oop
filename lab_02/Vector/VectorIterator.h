@@ -16,8 +16,7 @@ template<NumberType Type>
 class VectorIterator : public BaseIterator<Type> {
 public:
     using value_type        = Type;
-    // TODO: Попробовать поменять [].
-    using pointer           = std::shared_ptr<Type>;
+    using pointer           = Type*;
     using reference         = Type&;
     using difference_type   = ptrdiff_t;
     using iterator_category = std::random_access_iterator_tag;
@@ -31,10 +30,8 @@ public:
 
     Type& operator*();
     const Type& operator*() const;
-    // TODO: Попробовать поменять [].
-    std::shared_ptr<Type[]> operator->();
-    std::shared_ptr<const Type[]> operator->() const;
-
+    Type* operator->();
+    const Type* operator->() const;
     Type& operator[](size_t n);
     const Type& operator[](size_t n) const;
 

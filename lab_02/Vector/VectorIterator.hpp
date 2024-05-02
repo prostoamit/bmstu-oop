@@ -79,7 +79,7 @@ const Type &VectorIterator<Type>::operator*() const {
 
 
 template<NumberType Type>
-std::shared_ptr<Type[]> VectorIterator<Type>::operator->() {
+Type* VectorIterator<Type>::operator->() {
     deleted_object_check(__LINE__);
     out_of_range_check(__LINE__);
 
@@ -87,7 +87,7 @@ std::shared_ptr<Type[]> VectorIterator<Type>::operator->() {
 }
 
 template<NumberType Type>
-std::shared_ptr<const Type[]> VectorIterator<Type>::operator->() const {
+const Type* VectorIterator<Type>::operator->() const {
     deleted_object_check(__LINE__);
     out_of_range_check(__LINE__);
 
