@@ -17,23 +17,11 @@
 template<NumberType Type>
 // Убрать virtual в наследовании
 class Vector : public BaseContainer {
-// В библиотечном классе private поля убрать в конец.
-private:
-    // TODO: Попробовать поменять [].
-    std::shared_ptr<Type[]> data;
-
-    void allocate(size_t elements_count);
-
 public:
     using value_type = Type;
     using size_type = size_t;
     using iterator = VectorIterator<Type>;
     using const_iterator = ConstVectorIterator<Type>;
-
-    // TODO: Излишние убрать.
-    using reference = Type&;
-    using cons_reference = const Type&;
-    using difference_type = ptrdiff_t;
 
     friend class VectorIterator<Type>;
     friend class ConstVectorIterator<Type>;
@@ -124,6 +112,13 @@ public:
 
     template<NumberType OtherType>
     friend std::ostream& operator<<(std::ostream& out_stream, const Vector<OtherType>& vector);
+
+private:
+    // TODO: Попробовать поменять [].
+    std::shared_ptr<Type[]> data;
+
+    void allocate(size_t elements_count);
+
 };
 
 #include "Vector.hpp"
