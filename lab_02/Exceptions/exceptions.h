@@ -8,14 +8,16 @@ namespace exceptions {
     const size_t BUFFER_SIZE = 256;
 
     class BaseException : public std::exception {
-    protected:
-        char message[BUFFER_SIZE];
     public:
-        BaseException() = default;
 
         virtual const char* what() const noexcept override;
 
         virtual ~BaseException() = default;
+
+    protected:
+        char message[BUFFER_SIZE];
+
+        BaseException() = default;
     };
 
     class DivisionByZeroException : public BaseException {

@@ -12,10 +12,9 @@
 #include "ConstVectorIterator.h"
 #include "vector_concepts.h"
 #include "container_concept.h"
-#include "iterator_concept.h"
+#include "iterator_concepts.h"
 
 template<NumberType Type>
-// Убрать virtual в наследовании
 class Vector : public BaseContainer {
 public:
     using value_type = Type;
@@ -32,17 +31,17 @@ public:
     Vector(size_t elements_count, Type filler);
 
     Vector(size_t elements_count, Type *outer_data);
-    // При передаче списка инициализации не нужна константная ссылка.
     Vector(std::initializer_list<Type> outer_data);
 
-    // Конструктор копирования должен быть explicit, чтобы нельзя было передать вектор по значению.
     explicit Vector(const Vector<Type>& other);
     Vector(Vector<Type>&& tmp_vector) noexcept;
 
     template<Container ContainerType>
+    requires std::convertible_to<typename ContainerType::value_type, Type>
     explicit Vector(const ContainerType& container);
 
-    template<Iterator IteratorType>
+    template<ForwardIterator IteratorType>
+    requires std::convertible_to<typename IteratorType::value_type, Type>
     Vector(const IteratorType& begin, const IteratorType& end);
 
     Vector<Type>& operator=(const Vector<Type>& other);
@@ -136,7 +135,6 @@ public:
     friend std::ostream& operator<<(std::ostream& out_stream, const Vector<OtherType>& vector);
 
 private:
-    // TODO: Попробовать поменять [].
     std::shared_ptr<Type[]> data;
 
     void allocate(size_t elements_count);

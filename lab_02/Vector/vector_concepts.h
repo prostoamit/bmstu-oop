@@ -26,6 +26,7 @@ template<typename T>
 concept NumberType =
         Comparable<T, int> &&
         Comparable<T, T> &&
+        Assignable<T, T> &&
         Constructable<T> &&
         requires(T a, T b) {
             { a + b } -> std::convertible_to<T>;

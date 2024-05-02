@@ -3,13 +3,13 @@
 
 #include <memory>
 #include <cstddef>
-#include "iterator_concept.h"
+#include "iterator_concepts.h"
 
 template<typename T>
 class BaseIterator {
 protected:
-    // TODO: Попробовать поменять [].
     std::weak_ptr<T[]> ptr;
+    BaseIterator() = default;
 public:
     virtual ~BaseIterator() = default;
 

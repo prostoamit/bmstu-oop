@@ -103,6 +103,7 @@ Vector<Type>::Vector(const Vector<Type>& other) {
 
 template<NumberType Type>
 template<Container ContainerType>
+requires std::convertible_to<typename ContainerType::value_type, Type>
 Vector<Type>::Vector(const ContainerType& container) {
     typename ContainerType::const_iterator begin = container.begin();
 
@@ -120,7 +121,8 @@ Vector<Type>::Vector(const ContainerType& container) {
 }
 
 template<NumberType Type>
-template<Iterator IteratorType>
+template<ForwardIterator IteratorType>
+requires std::convertible_to<typename IteratorType::value_type, Type>
 Vector<Type>::Vector(const IteratorType& begin, const IteratorType& end) {
     size_t size = 0;
     for (IteratorType iterator = begin; iterator != end; iterator++, size++);

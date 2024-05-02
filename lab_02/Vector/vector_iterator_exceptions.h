@@ -7,8 +7,9 @@ using exceptions::BaseException;
 
 namespace vector_iterator_exceptions {
     class VectorIteratorBaseException : public BaseException {
-    public:
+    protected:
         VectorIteratorBaseException() = default;
+    public:
         VectorIteratorBaseException(const char* filename, int line, const char* error_message = "Vector error.");
     };
 
