@@ -790,7 +790,7 @@ ConstVectorIterator<Type> Vector<Type>::begin() const noexcept {
 template<NumberType Type>
 ConstVectorIterator<Type> Vector<Type>::end() const noexcept {
     ConstVectorIterator<Type> const_iterator(*this);
-    return const_iterator + this->_size;
+    return const_iterator + typename ConstVectorIterator<Type>::difference_type(this->_size);
 }
 
 template<NumberType Type>
