@@ -6,7 +6,7 @@
 #include "Model.hpp"
 #include "WireframeModelImplementation.hpp"
 
-class WireframeModel : Object {
+class WireframeModel : Model {
 public:
     WireframeModel(std::shared_ptr<WireframeModelImplementation> implementation);
 
