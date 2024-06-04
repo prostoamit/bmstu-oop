@@ -46,8 +46,8 @@ set(PROJECT_SOURCES
         Objects/ObjectComposite.hpp
         Objects/ObjectComposite.cpp
         Visitors/Visitor.hpp
-        Visitors/Tranform/TransformVisitor.hpp
-        Visitors/Tranform/TransformVisitor.cpp
+        Visitors/Transform/TransformVisitor.hpp
+        Visitors/Transform/TransformVisitor.cpp
         Cameras/Camera.hpp
         Cameras/Camera.cpp
         Cameras/ParallelProjectionCamera.hpp
