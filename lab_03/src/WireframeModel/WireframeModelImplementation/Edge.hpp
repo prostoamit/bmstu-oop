@@ -7,18 +7,16 @@
 
 class Edge {
 public:
-    Edge(std::weak_ptr<Point> vertex_1, std::weak_ptr<Point> vertex_2);
+    Edge(size_t vertex_1_position, size_t vertex_2_position);
     Edge(const Edge& other);
 
-    std::weak_ptr<Point> get_vertex_1() const;
-    void set_vertex_1(std::weak_ptr<Point> vertex);
+    size_t get_vertex_1_position() const;
 
-    std::weak_ptr<Point> get_vertex_2() const;
-    void set_vertex_2(std::weak_ptr<Point> vertex);
+    size_t get_vertex_2_position() const;
 
 private:
-    std::weak_ptr<Point> vertex_1;
-    std::weak_ptr<Point> vertex_2;
+    size_t vertex_1_position;
+    size_t vertex_2_position;
 };
 
 
