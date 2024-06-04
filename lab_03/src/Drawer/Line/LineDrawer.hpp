@@ -5,7 +5,7 @@
 
 class LineDrawer {
 public:
-    virtual ~LineDrawer() = 0;
+    virtual ~LineDrawer() = default;
 
     virtual void draw(const Point2D& point_1, const Point2D& point_2) = 0;
 };

@@ -76,6 +76,8 @@ set(PROJECT_SOURCES
         Scene/Scene.hpp
         Geometry/Vector.cpp
         Geometry/Vector.hpp
+        Geometry/Point2D.cpp
+        Geometry/Point2D.hpp
         Common/Container.inl
         Common/Container.hpp
         WireframeModel/WireframeModelImplementation/Edge.cpp
@@ -109,8 +111,6 @@ set(PROJECT_SOURCES
         Drawer/ShapeDrawerFactory.hpp
         Drawer/QtShapeDrawerFactory.cpp
         Drawer/QtShapeDrawerFactory.hpp
-        Geometry/Point2D.cpp
-        Geometry/Point2D.hpp
         Drawer/ScreenCleaner/QtScreenCleaner.cpp
         Drawer/ScreenCleaner/QtScreenCleaner.hpp
 )

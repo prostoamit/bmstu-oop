@@ -4,7 +4,7 @@
 
 class ScreenCleaner {
 public:
-    virtual ~ScreenCleaner() = 0;
+    virtual ~ScreenCleaner() = default;
 
     virtual void draw() = 0;
 };
