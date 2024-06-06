@@ -13,107 +13,214 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories(
-        Objects
-        WireframeModel
-        Geometry
-        Cameras
-        Transformations
-        Commands
-        Visitors
-        Scene
-        Common
+        .
 )
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        QtInterface/mainwindow.cpp
+        QtInterface/mainwindow.h
+        QtInterface/mainwindow.ui
         Objects/Object.hpp
         Objects/Object.cpp
-        Objects/VisibleObject.hpp
-        Objects/VisibleObject.cpp
-        Objects/InvisibleObject.hpp
-        Objects/InvisibleObject.cpp
-        Objects/Model.hpp
-        Objects/Model.cpp
-        WireframeModel/WireframeModel.hpp
-        WireframeModel/WireframeModel.cpp
-        WireframeModel/WireframeModelImplementation/Implementation.hpp
-        WireframeModel/WireframeModelImplementation/Implementation.cpp
-        Geometry/Point.hpp
-        Geometry/Point.cpp
-        Objects/ObjectComposite.hpp
-        Objects/ObjectComposite.cpp
-        Visitors/Visitor.hpp
-        Visitors/Transform/TransformVisitor.hpp
-        Visitors/Transform/TransformVisitor.cpp
-        Cameras/Camera.hpp
-        Cameras/Camera.cpp
-        Cameras/ParallelProjectionCamera.hpp
-        Cameras/ParallelProjectionCamera.cpp
-        Transformations/Transformer.hpp
-        Transformations/Rotation/Rotate.cpp
-        Transformations/Rotation/Rotate.hpp
-        Geometry/TransformationMatrix.cpp
-        Geometry/TransformationMatrix.hpp
-        Commands/Command.hpp
-        Commands/ModelCommands/ModelCommand.hpp
-        Commands/HistoryCommands/HistoryCommand.hpp
-        Commands/CameraCommands/CameraCommand.hpp
-        Commands/SceneCommands/SceneCommand.hpp
-        Managers/ManagerSolution.cpp
-        Managers/ManagerSolution.hpp
-        Managers/HistoryManager.cpp
-        Managers/HistoryManager.hpp
+        Objects/Composite/CompositeObject.hpp
+        Objects/Composite/CompositeObject.cpp
+        Objects/Visible/VisibleObject.hpp
+        Objects/Visible/VisibleObject.cpp
+        Objects/Invisible/InvisibleObject.hpp
+        Objects/Invisible/InvisibleObject.cpp
+        Objects/Visible/Models/Model.hpp
+        Objects/Visible/Models/Model.cpp
         Objects/CareTaker/ObjectCareTaker.cpp
         Objects/CareTaker/ObjectCareTaker.hpp
         Objects/CareTaker/ObjectMemento.cpp
         Objects/CareTaker/ObjectMemento.hpp
-        Managers/SceneManager.cpp
-        Managers/SceneManager.hpp
-        Scene/Scene.cpp
-        Scene/Scene.hpp
+        Objects/Visible/Models/WireframeModel/WireframeModel.hpp
+        Objects/Visible/Models/WireframeModel/WireframeModel.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/WireframeModelImplementation.hpp
+        Objects/Visible/Models/WireframeModel/Implementation/WireframeModelImplementation.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/Edge.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/Edge.hpp
+        Objects/Visible/Models/WireframeModel/Implementation/VerticesPairs/VerticesPairs.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/VerticesPairs/VerticesPairs.hpp
+        Objects/Visible/Models/WireframeModel/Implementation/Matrix/Matrix.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/Matrix/Matrix.hpp
+        Objects/Visible/Models/WireframeModel/Implementation/AdjacencyList/AdjacencyList.cpp
+        Objects/Visible/Models/WireframeModel/Implementation/AdjacencyList/AdjacencyList.hpp
+        Geometry/Point.hpp
+        Geometry/Point.cpp
+        Geometry/TransformationMatrix.cpp
+        Geometry/TransformationMatrix.hpp
         Geometry/Vector.cpp
         Geometry/Vector.hpp
         Geometry/Point2D.cpp
         Geometry/Point2D.hpp
-        Common/Container.inl
-        Common/Container.hpp
-        WireframeModel/WireframeModelImplementation/Edge.cpp
-        WireframeModel/WireframeModelImplementation/Edge.hpp
-        WireframeModel/WireframeModelImplementation/VerticesPairs/VerticesPairs.cpp
-        WireframeModel/WireframeModelImplementation/VerticesPairs/VerticesPairs.hpp
-        WireframeModel/WireframeModelImplementation/Matrix/Matrix.cpp
-        WireframeModel/WireframeModelImplementation/Matrix/Matrix.hpp
-        WireframeModel/WireframeModelImplementation/AdjacencyList/AdjacencyList.cpp
-        WireframeModel/WireframeModelImplementation/AdjacencyList/AdjacencyList.hpp
+        Visitors/Visitor.hpp
+        Visitors/Transform/TransformVisitor.hpp
+        Visitors/Transform/TransformVisitor.cpp
+        Visitors/Draw/DrawVisitor.cpp
+        Visitors/Draw/DrawVisitor.hpp
+        Objects/Invisible/Cameras/Camera.hpp
+        Objects/Invisible/Cameras/Camera.cpp
+        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.hpp
+        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.cpp
+        Transformations/Transformer.hpp
+        Transformations/Rotation/Rotate.cpp
+        Transformations/Rotation/Rotate.hpp
         Transformations/Move/Move.cpp
         Transformations/Move/Move.hpp
         Transformations/Scale/Scale.cpp
         Transformations/Scale/Scale.hpp
-        Transformations/TransformerCreator.cpp
-        Transformations/TransformerCreator.hpp
-        Transformations/Factories/MoveFactory.cpp
-        Transformations/Factories/MoveFactory.hpp
-        Transformations/Factories/Factory.hpp
-        Transformations/Factories/ScaleFactory.cpp
-        Transformations/Factories/ScaleFactory.hpp
-        Visitors/Draw/DrawVisitor.cpp
-        Visitors/Draw/DrawVisitor.hpp
-        Drawer/ScreenCleaner/ScreenCleaner.cpp
+        Commands/Command.hpp
+        Commands/Model/ModelCommand.hpp
+        Commands/History/HistoryCommand.hpp
+        Commands/Camera/CameraCommand.hpp
+        Commands/Scene/SceneCommand.hpp
+        Managers/ManagerSolution.cpp
+        Managers/ManagerSolution.hpp
+        Managers/HistoryManager/HistoryManager.cpp
+        Managers/HistoryManager/HistoryManager.hpp
+        Managers/SceneManager/SceneManager.cpp
+        Managers/SceneManager/SceneManager.hpp
+        Scene/Scene.cpp
+        Scene/Scene.hpp
+        Common/Container.inl
+        Common/Container.hpp
+        Common/Concepts.hpp
         Drawer/ScreenCleaner/ScreenCleaner.hpp
-        Drawer/Line/LineDrawer.cpp
         Drawer/Line/LineDrawer.hpp
-        Drawer/Line/QtLineDrawer.cpp
-        Drawer/Line/QtLineDrawer.hpp
-        Drawer/ShapeDrawerFactory.cpp
-        Drawer/ShapeDrawerFactory.hpp
-        Drawer/QtShapeDrawerFactory.cpp
-        Drawer/QtShapeDrawerFactory.hpp
-        Drawer/ScreenCleaner/QtScreenCleaner.cpp
-        Drawer/ScreenCleaner/QtScreenCleaner.hpp
+        Drawer/Line/QtLineDrawer/QtLineDrawer.cpp
+        Drawer/Line/QtLineDrawer/QtLineDrawer.hpp
+        Creators/DrawerFactories/ShapeDrawerFactory.hpp
+        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.cpp
+        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.hpp
+        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.cpp
+        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.hpp
+        Creators/Objects/WireframeModel/Builders/WireframeModelBuilder.cpp
+        Creators/Objects/WireframeModel/Builders/WireframeModelBuilder.hpp
+        Objects/Visible/Models/WireframeModel/Sources/WireframeModelSource.hpp
+        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.cpp
+        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.hpp
+        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.cpp
+        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp
+        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.cpp
+        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp
+        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.cpp
+        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp
+        Creators/Transformations/TransformationCreator.hpp
+        Creators/Transformations/TransformationSolution.cpp
+        Creators/Transformations/TransformationSolution.hpp
+        Creators/Objects/WireframeModel/Sources/WireframeModelSourceCreator.hpp
+        Creators/Objects/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.cpp
+        Creators/Objects/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp
+        Creators/Objects/WireframeModel/Sources/WireframeModelSourceSolution.cpp
+        Creators/Objects/WireframeModel/Sources/WireframeModelSourceSolution.hpp
+        Creators/Objects/WireframeModel/WireframeModelCreator.cpp
+        Creators/Objects/WireframeModel/WireframeModelCreator.hpp
+        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderSolution.cpp
+        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderSolution.hpp
+        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.cpp
+        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp
+        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderCreator.hpp
+        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.cpp
+        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp
+        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.cpp
+        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp
+        Transformations/Transformer.cpp
+        Creators/Transformations/MoveCreator/MoveCreator.cpp
+        Creators/Transformations/MoveCreator/MoveCreator.hpp
+        Creators/Transformations/MoveCreator/MoveCreator.hpp
+        Creators/Transformations/ScaleCreator/ScaleCreator.cpp
+        Creators/Transformations/ScaleCreator/ScaleCreator.hpp
+        Creators/Transformations/RotateCreator/RotateCreator.cpp
+        Creators/Transformations/RotateCreator/RotateCreator.hpp
+        Managers/LoadManager/LoadManager.cpp
+        Managers/LoadManager/LoadManager.hpp
+        Managers/TransformManager/TransformManager.cpp
+        Managers/TransformManager/TransformManager.hpp
+        Managers/DrawManager/DrawManager.cpp
+        Managers/DrawManager/DrawManager.hpp
+        Creators/Managers/History/HistoryManagerCreator.cpp
+        Creators/Managers/History/HistoryManagerCreator.hpp
+        Creators/Managers/Scene/SceneManagerCreator.cpp
+        Creators/Managers/Scene/SceneManagerCreator.hpp
+        Creators/Managers/Transform/TransformManagerCreator.cpp
+        Creators/Managers/Transform/TransformManagerCreator.hpp
+        Creators/Managers/Draw/DrawManagerCreator.cpp
+        Creators/Managers/Draw/DrawManagerCreator.hpp
+        Creators/Managers/Load/LoadManagerCreator.cpp
+        Creators/Managers/Load/LoadManagerCreator.hpp
+        Managers/CameraManager/CameraManager.cpp
+        Managers/CameraManager/CameraManager.hpp
+        Scene/Cameras.cpp
+        Scene/Cameras.hpp
+        Creators/Managers/Camera/CameraManagerCreator.cpp
+        Creators/Managers/Camera/CameraManagerCreator.hpp
+        Creators/Objects/Cameras/CameraCreator.cpp
+        Creators/Objects/Cameras/CameraCreator.hpp
+        Creators/Objects/Cameras/ParallelProjection/ParallelProjectionCameraCreator.cpp
+        Creators/Objects/Cameras/ParallelProjection/ParallelProjectionCameraCreator.hpp
+        Creators/Objects/Cameras/CameraSolution.cpp
+        Creators/Objects/Cameras/CameraSolution.hpp
+        Commands/Model/Move/ModelMoveCommand.cpp
+        Commands/Model/Move/ModelMoveCommand.hpp
+        Commands/Command.cpp
+        Commands/Model/Scale/ModelScaleCommand.cpp
+        Commands/Model/Scale/ModelScaleCommand.hpp
+        Commands/Model/Rotate/ModelRotateCommand.cpp
+        Commands/Model/Rotate/ModelRotateCommand.hpp
+        Commands/Model/Load/LoadModelCommand.cpp
+        Commands/Model/Load/LoadModelCommand.hpp
+        Commands/Camera/Add/AddCameraCommand.cpp
+        Commands/Camera/Add/AddCameraCommand.hpp
+        Commands/Camera/Remove/RemoveCameraCommand.cpp
+        Commands/Camera/Remove/RemoveCameraCommand.hpp
+        Commands/Camera/Set/SetCameraCommand.cpp
+        Commands/Camera/Set/SetCameraCommand.hpp
+        Commands/Camera/Move/MoveCameraCommand.cpp
+        Commands/Camera/Move/MoveCameraCommand.hpp
+        Commands/Camera/Rotate/RotateCameraCommand.cpp
+        Commands/Camera/Rotate/RotateCameraCommand.hpp
+        Commands/Facade.cpp
+        Commands/Facade.hpp
+        Commands/Camera/CameraCommands.hpp
+        Commands/Model/ModelCommands.hpp
+        Commands/Commands.hpp
+        QtInterface/AppLogic/Logic.cpp
+        QtInterface/AppLogic/Logic.hpp
+        Commands/Model/Remove/RemoveModelCommand.cpp
+        Commands/Model/Remove/RemoveModelCommand.hpp
+        Commands/Scene/Draw/DrawSceneCommand.cpp
+        Commands/Scene/Draw/DrawSceneCommand.hpp
+        Commands/Scene/SceneCommands.hpp
+        Commands/AllModels/Move/AllModelsMoveCommand.cpp
+        Commands/AllModels/Move/AllModelsMoveCommand.hpp
+        Commands/AllModels/AllModelsCommand.hpp
+        Commands/AllModels/Rotate/AllModelsRotateCommand.cpp
+        Commands/AllModels/Rotate/AllModelsRotateCommand.hpp
+        Commands/AllModels/Scale/AllModelsScaleCommand.cpp
+        Commands/AllModels/Scale/AllModelsScaleCommand.hpp
+        Commands/AllModels/AllModelsCommands.hpp
+        Exceptions/Exception.cpp
+        Exceptions/Exception.hpp
+        Exceptions/Scene/NoModel/NoModelException.cpp
+        Exceptions/Scene/NoModel/NoModelException.hpp
+        Commands/Scene/SetActiveModel/SetActiveModelCommand.cpp
+        Commands/Scene/SetActiveModel/SetActiveModelCommand.hpp
+        QtInterface/AppLogic/Data.cpp
+        QtInterface/AppLogic/Data.hpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.cpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
+        Creators/Objects/WireframeModel/Sources/String/StringWireframeModelSourceCreator.cpp
+        Creators/Objects/WireframeModel/Sources/String/StringWireframeModelSourceCreator.hpp
+        Creators/Objects/Models/Director.cpp
+        Creators/Objects/Models/Director.hpp
 )
+
+# Add GoogleTest
+find_package(GTest REQUIRED)
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(src
@@ -138,7 +245,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(src PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(src PRIVATE Qt${QT_VERSION_MAJOR}::Widgets gsl ${GTEST_LIBRARIES} pthread)
 
 set_target_properties(src PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

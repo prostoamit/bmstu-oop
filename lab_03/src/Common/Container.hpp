@@ -11,7 +11,7 @@ public:
 
     Container() = default;
     explicit Container(const Container& other) = default;
-    Container(Container&& other) = default;
+//    Container(Container&& other);
 
     explicit Container(const std::vector<T>& other);
 

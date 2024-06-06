@@ -4,8 +4,8 @@
 
 class Point {
 public:
+    Point();
     Point(double x, double y, double z);
-
     Point(const Point& other);
 
     double get_x() const;
@@ -21,9 +21,9 @@ public:
     bool operator==(const Point& other) const = default;
     
 private:
-    double _x;
-    double _y;
-    double _z;
+    double x;
+    double y;
+    double z;
 };
 
 

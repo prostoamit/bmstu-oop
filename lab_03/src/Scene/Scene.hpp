@@ -3,19 +3,26 @@
 
 #include <memory>
 
-#include "ObjectComposite.hpp"
-#include "Visitor.hpp"
+#include "Objects/Composite/CompositeObject.hpp"
 
 class Scene {
 public:
+    Scene();
+
+    std::shared_ptr<Object> get_active_object();
+    void set_active_object(std::shared_ptr<Object> object);
     std::shared_ptr<Object> get_object(size_t id);
     void add_object(std::shared_ptr<Object> object);
     void remove_object(size_t id);
 
-    std::shared_ptr<ObjectComposite> get_composite();
+    CompositeObject::iterator begin();
+    CompositeObject::iterator end();
+
+    std::shared_ptr<CompositeObject> get_objects();
 
 private:
-    std::shared_ptr<ObjectComposite> composite;
+    std::shared_ptr<CompositeObject> objects;
+    std::shared_ptr<Object> active_object;
 };
 
 

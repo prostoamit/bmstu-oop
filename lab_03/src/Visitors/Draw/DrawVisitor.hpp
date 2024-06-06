@@ -3,17 +3,23 @@
 
 #include <memory>
 
-#include "Visitor.hpp"
+#include "Visitors/Visitor.hpp"
+#include "Objects/Invisible/Cameras/Camera.hpp"
+#include "Creators/DrawerFactories/ShapeDrawerFactory.hpp"
+#include "Transformations/Transformer.hpp"
 
-
-class DrawVisitor : Visitor {
+class DrawVisitor : public Visitor {
 public:
-    DrawVisitor();
+    DrawVisitor(std::shared_ptr<Drawer::Line> line_drawer, std::shared_ptr<Camera> camera);
 
-    virtual void visit(ObjectComposite &composite) override;
-    virtual void visit(WireframeModel &model) override;
-    virtual void visit(ParallelProjectionCamera &camera) override;
+    virtual void visit(CompositeObject& composite) override;
+    virtual void visit(WireframeModel::WireframeModel& model) override;
+    virtual void visit(ParallelProjectionCamera& camera) override;
+
+private:
+    std::shared_ptr<Drawer::Line> line_drawer;
+    std::shared_ptr<Camera> camera;
+    std::shared_ptr<Transformers::Transformer> transformer;
 };
-
 
 #endif //DRAWVISITOR_HPP

@@ -1,37 +1,40 @@
 #include "Point.hpp"
 
-Point::Point(double x, double y, double z) :
-    _x(x),
-    _y(y),
-    _z(z)
-{}
+Point::Point() :
+        x(0.0),
+        y(0.0),
+        z(0.0) {}
 
-Point::Point(const Point &other) :
-    _x(other._x),
-    _y(other._y),
-    _z(other._z)
-{}
+Point::Point(double x, double y, double z) :
+        x(x),
+        y(y),
+        z(z) {}
+
+Point::Point(const Point& other) :
+        x(other.x),
+        y(other.y),
+        z(other.z) {}
 
 double Point::get_x() const {
-    return _x;
+    return x;
 }
 
 void Point::set_x(double x) {
-    _x = x;
+    this->x = x;
 }
 
 double Point::get_y() const {
-    return _y;
+    return y;
 }
 
 void Point::set_y(double y) {
-    _y = y;
+    this->y = y;
 }
 
 double Point::get_z() const {
-    return _z;
+    return z;
 }
 
 void Point::set_z(double z) {
-    _z = z;
+    this->z = z;
 }
