@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Creators/Objects/WireframeModel/Builders/WireframeModelBuilder.hpp"
+#include "Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilder.hpp"
 #include "Objects/Visible/Models/WireframeModel/WireframeModel.hpp"
 
 namespace WireframeModel {

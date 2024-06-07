@@ -1,6 +1,6 @@
 #include "WireframeModelSourceSolution.hpp"
 
-#include "Creators/Objects/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp"
 
 std::map<std::string, std::shared_ptr<WireframeModel::SourceCreator>> WireframeModel::SourceSolution::creators_map {
         { ".txt", std::make_shared<TxtSourceCreator>() },

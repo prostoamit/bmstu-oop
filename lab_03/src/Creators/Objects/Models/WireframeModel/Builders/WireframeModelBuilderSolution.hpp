@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 
-#include "Creators/Objects/WireframeModel/Builders/WireframeModelBuilderCreator.hpp"
+#include "WireframeModelBuilderCreator.hpp"
 #include "Objects/Visible/Models/WireframeModel/Sources/WireframeModelSource.hpp"
 
 namespace WireframeModel {

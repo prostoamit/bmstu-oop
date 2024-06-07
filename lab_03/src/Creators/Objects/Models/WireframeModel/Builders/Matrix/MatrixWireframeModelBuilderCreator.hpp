@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Creators/Objects/WireframeModel/Builders/WireframeModelBuilderCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderCreator.hpp"
 
 namespace WireframeModel {
     class MatrixBuilderCreator : public BuilderCreator {

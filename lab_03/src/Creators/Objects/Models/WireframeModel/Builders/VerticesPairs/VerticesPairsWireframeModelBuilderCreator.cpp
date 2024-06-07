@@ -1,6 +1,6 @@
 #include "VerticesPairsWireframeModelBuilderCreator.hpp"
 
-#include "Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp"
+#include "VerticesPairsWireframeModelBuilder.hpp"
 
 using namespace WireframeModel;
 

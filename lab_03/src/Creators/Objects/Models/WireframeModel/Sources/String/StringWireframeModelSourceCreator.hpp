@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-#include "Creators/Objects/WireframeModel/Sources/WireframeModelSourceCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceCreator.hpp"
 #include "Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp"
 
 namespace WireframeModel {

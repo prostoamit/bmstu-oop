@@ -1,6 +1,6 @@
 #include "MatrixWireframeModelBuilderCreator.hpp"
 
-#include "Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp"
+#include "MatrixWireframeModelBuilder.hpp"
 
 using namespace WireframeModel;
 

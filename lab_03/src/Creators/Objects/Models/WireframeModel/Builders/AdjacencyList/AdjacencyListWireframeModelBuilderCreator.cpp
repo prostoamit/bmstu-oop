@@ -1,6 +1,6 @@
 #include "AdjacencyListWireframeModelBuilderCreator.hpp"
 
-#include "Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp"
+#include "AdjacencyListWireframeModelBuilder.hpp"
 
 std::shared_ptr<WireframeModel::Builder>
 WireframeModel::AdjacencyListBuilderCreator::create(std::shared_ptr<Source> source) {

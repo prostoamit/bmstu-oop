@@ -96,36 +96,36 @@ set(PROJECT_SOURCES
         Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.hpp
         Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.cpp
         Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.hpp
-        Creators/Objects/WireframeModel/Builders/WireframeModelBuilder.cpp
-        Creators/Objects/WireframeModel/Builders/WireframeModelBuilder.hpp
+        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilder.cpp
+        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilder.hpp
         Objects/Visible/Models/WireframeModel/Sources/WireframeModelSource.hpp
         Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.cpp
         Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.hpp
-        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.cpp
-        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp
-        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.cpp
-        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp
-        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.cpp
-        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp
+        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.cpp
+        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp
+        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.cpp
+        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp
+        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.cpp
+        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp
         Creators/Transformations/TransformationCreator.hpp
         Creators/Transformations/TransformationSolution.cpp
         Creators/Transformations/TransformationSolution.hpp
-        Creators/Objects/WireframeModel/Sources/WireframeModelSourceCreator.hpp
-        Creators/Objects/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.cpp
-        Creators/Objects/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp
-        Creators/Objects/WireframeModel/Sources/WireframeModelSourceSolution.cpp
-        Creators/Objects/WireframeModel/Sources/WireframeModelSourceSolution.hpp
-        Creators/Objects/WireframeModel/WireframeModelCreator.cpp
-        Creators/Objects/WireframeModel/WireframeModelCreator.hpp
-        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderSolution.cpp
-        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderSolution.hpp
-        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.cpp
-        Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp
-        Creators/Objects/WireframeModel/Builders/WireframeModelBuilderCreator.hpp
-        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.cpp
-        Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp
-        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.cpp
-        Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp
+        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceCreator.hpp
+        Creators/Objects/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.cpp
+        Creators/Objects/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp
+        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceSolution.cpp
+        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceSolution.hpp
+        Creators/Objects/Models/WireframeModel/WireframeModelCreator.cpp
+        Creators/Objects/Models/WireframeModel/WireframeModelCreator.hpp
+        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderSolution.cpp
+        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderSolution.hpp
+        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.cpp
+        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp
+        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderCreator.hpp
+        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.cpp
+        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp
+        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.cpp
+        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp
         Transformations/Transformer.cpp
         Creators/Transformations/MoveCreator/MoveCreator.cpp
         Creators/Transformations/MoveCreator/MoveCreator.hpp
@@ -212,10 +212,8 @@ set(PROJECT_SOURCES
         Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.cpp
         Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
         Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
-        Creators/Objects/WireframeModel/Sources/String/StringWireframeModelSourceCreator.cpp
-        Creators/Objects/WireframeModel/Sources/String/StringWireframeModelSourceCreator.hpp
-        Creators/Objects/Models/Director.cpp
-        Creators/Objects/Models/Director.hpp
+        Creators/Objects/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.cpp
+        Creators/Objects/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.hpp
 )
 
 # Add GoogleTest

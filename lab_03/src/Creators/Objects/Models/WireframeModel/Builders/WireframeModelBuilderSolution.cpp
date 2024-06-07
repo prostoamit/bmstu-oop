@@ -1,8 +1,8 @@
 #include "WireframeModelBuilderSolution.hpp"
 
-#include "Creators/Objects/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp"
-#include "Creators/Objects/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp"
-#include "Creators/Objects/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp"
+#include "Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp"
 
 using namespace WireframeModel;
 
