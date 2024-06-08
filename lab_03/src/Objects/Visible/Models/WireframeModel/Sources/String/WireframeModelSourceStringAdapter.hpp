@@ -5,19 +5,18 @@
 #include <optional>
 #include <fstream>
 
-#include "Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceAdapter.hpp"
+#include "WireframeModelSourceAdapter.hpp"
 
 namespace WireframeModel {
     class StringSourceAdapter : public SourceAdapter {
     public:
-        explicit StringSourceAdapter(char* string);
+        explicit StringSourceAdapter(std::shared_ptr<Source> source);
 
         virtual std::optional<std::shared_ptr<Point>> read_vertex() override;
         virtual std::optional<std::shared_ptr<Edge>> read_edge() override;
 
     private:
-        char* string;
-        char* reader;
+        std::shared_ptr<Source> source;
 
         struct {
             size_t vertices_count;

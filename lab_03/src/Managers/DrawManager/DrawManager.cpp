@@ -18,5 +18,11 @@ void DrawManager::draw_scene() {
 
     std::shared_ptr<DrawVisitor> draw_visitor = std::make_shared<DrawVisitor>(line_drawer, camera);
 
-    scene_manager->get_scene()->get_objects()->accept(draw_visitor);
+    auto scene = scene_manager->get_scene();
+
+    auto transform_manager = ManagerSolution::get_transform_manager();
+    for (auto &[key, object] : *scene)
+        object->accept(draw_visitor);
+
+//    scene_manager->get_scene()->get_objects()->accept(draw_visitor);
 }

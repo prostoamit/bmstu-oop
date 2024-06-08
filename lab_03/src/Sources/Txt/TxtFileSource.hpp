@@ -10,7 +10,7 @@ class TxtFileSource : public Source {
 public:
     explicit TxtFileSource(const std::string& path);
 
-    const std::string read_line(size_t bytes) override;
+    const std::string read_line(size_t bytes, char separator) override;
     void reset() override;
 protected:
     std::fstream file_stream;

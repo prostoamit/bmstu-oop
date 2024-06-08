@@ -147,7 +147,7 @@ void MainWindow::on_AddCameraButton_clicked() {
 
 void MainWindow::on_DeleteModelButton_clicked() {
     try {
-        logic->delete_object();
+        logic->delete_object(ui->ModelsComboBox->currentText().toStdString());
     } catch (std::exception& e) {
         show_error("Моделей нет.");
     }

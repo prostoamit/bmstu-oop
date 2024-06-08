@@ -1,15 +1,17 @@
 #ifndef SETACTIVEMODELCOMMAND_HPP
 #define SETACTIVEMODELCOMMAND_HPP
 
+#include <string>
+
 #include "Commands/Scene/SceneCommand.hpp"
 
 class SetActiveModelCommand : public SceneCommand {
 public:
-    SetActiveModelCommand(size_t id);
+    SetActiveModelCommand(const std::string& name);
 
     void execute() override;
 private:
-    size_t id;
+    std::string name;
 };
 
 

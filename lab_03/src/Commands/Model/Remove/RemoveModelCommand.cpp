@@ -2,6 +2,8 @@
 
 #include "Managers/ManagerSolution.hpp"
 
+RemoveModelCommand::RemoveModelCommand(const std::string& name) : name(name) {};
+
 void RemoveModelCommand::execute() {
     auto scene_manager = ManagerSolution::get_scene_manager();
     auto active_object = scene_manager->get_active_object();
@@ -12,12 +14,13 @@ void RemoveModelCommand::execute() {
         return;
 
     size_t active_id = active_object->get_id();
-    scene_manager->remove_object(active_id);
+    scene_manager->remove_object(name);
 
-    if (scene_manager->get_scene()->get_objects()->end() == scene_manager->get_scene()->get_objects()->begin())
+    if (scene_manager->get_scene()->begin() == scene_manager->get_scene()->end()) {
         return;
+    }
 
-    auto new_active_model = scene_manager->get_scene()->get_objects()->begin()->second;
+    auto new_active_model = scene_manager->get_scene()->begin()->second;
     scene_manager->set_active_object(new_active_model);
     id = new_active_model->get_id();
 }

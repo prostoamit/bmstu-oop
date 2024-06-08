@@ -18,7 +18,7 @@ void AppLogic::load_object(const std::string& path, const std::string& implement
     facade->apply(command);
 
     std::filesystem::path file_path(path);
-    std::string file_name =file_path.filename();
+    std::string file_name = file_path.filename();
     size_t current_object_id = command->result();
 
     data->add_object(file_name, current_object_id);
@@ -27,8 +27,8 @@ void AppLogic::load_object(const std::string& path, const std::string& implement
     draw();
 }
 
-void AppLogic::delete_object() {
-    auto command = std::make_shared<RemoveModelCommand>();
+void AppLogic::delete_object(const std::string& name) {
+    auto command = std::make_shared<RemoveModelCommand>(name);
 
     facade->apply(command);
 
@@ -48,7 +48,7 @@ void AppLogic::set_active_object(const std::string& name) {
         return;
     size_t id = data->get_objects()[name];
 
-    auto command = std::make_shared<SetActiveModelCommand>(id);
+    auto command = std::make_shared<SetActiveModelCommand>(name);
 
     facade->apply(command);
     draw();

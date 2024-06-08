@@ -34,7 +34,7 @@ std::optional<std::shared_ptr<Edge>> WireframeModel::TxtSource::read_edge() {
         return std::nullopt;
 
     if (parse_data.edges_count == 0 && parse_data.current_edge == 0) {
-        line << source->read_line(256);
+        line << source->read_line(256, '\n');
         line >> parse_data.edges_count;
         line.clear();
     }
@@ -43,7 +43,7 @@ std::optional<std::shared_ptr<Edge>> WireframeModel::TxtSource::read_edge() {
         return std::nullopt;
 
     size_t vertex_1_position, vertex_2_position;
-    line << source->read_line(256);
+    line << source->read_line(256, '\n');
     line >> vertex_1_position >> vertex_2_position;
     parse_data.current_edge++;
     return std::make_shared<Edge>(vertex_1_position, vertex_2_position);

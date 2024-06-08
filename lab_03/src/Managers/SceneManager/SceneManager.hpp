@@ -2,6 +2,7 @@
 #define SCENEMANAGER_HPP
 
 #include <memory>
+#include <string>
 
 #include "Scene/Scene.hpp"
 
@@ -12,9 +13,9 @@ public:
 
     std::shared_ptr<Object> get_active_object();
     void set_active_object(std::shared_ptr<Object> object);
-    std::shared_ptr<Object> get_object(size_t id) const;
-    void add_object(std::shared_ptr<Object> object);
-    void remove_object(size_t id);
+    std::shared_ptr<Object> get_object(const std::string& name) const;
+    void add_object(std::shared_ptr<Object> object, const std::string& name);
+    void remove_object(const std::string& name);
 
 protected:
     SceneManager();

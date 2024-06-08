@@ -11,6 +11,7 @@
 size_t LoadManager::load_wireframe_model(const std::string& path, const std::string& implementation_type) {
     std::filesystem::path p(path);
     std::string extension = p.extension().string();
+    std::string name = p.filename().string();
 
     auto scene_manager = ManagerSolution::get_scene_manager();
 
@@ -23,7 +24,7 @@ size_t LoadManager::load_wireframe_model(const std::string& path, const std::str
     auto model_director = WireframeModel::DirectorSolution::get(builder);
     auto model = model_director->create();
 
-    scene_manager->set_active_object(model);
+    scene_manager->add_object(model, name);
 
     return model->get_id();
 }

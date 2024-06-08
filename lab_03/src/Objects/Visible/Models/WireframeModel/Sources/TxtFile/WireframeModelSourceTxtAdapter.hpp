@@ -5,7 +5,7 @@
 #include <optional>
 #include <fstream>
 
-#include "Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceAdapter.hpp"
+#include "WireframeModelSourceAdapter.hpp"
 
 namespace WireframeModel {
     class TxtSource : public SourceAdapter {

@@ -17,7 +17,7 @@ public:
     void draw();
 
     void load_object(const std::string& path, const std::string& implementation_type);
-    void delete_object();
+    void delete_object(const std::string& name);
     void set_active_object(const std::string& name);
 
     void move_object(double x_delta, double y_delta, double z_delta);

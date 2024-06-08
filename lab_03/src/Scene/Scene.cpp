@@ -2,43 +2,38 @@
 
 #include <algorithm>
 
-Scene::Scene() :
-        objects(std::make_shared<ObjectComposite>()) {}
+Scene::Scene() {}
 
-std::shared_ptr<Object> Scene::get_object(size_t id) {
-    if (id == objects->get_id())
-        return objects;
-
-    for (auto& i : *objects)
-        if (i.first == id)
-            return i.second;
-
-    return nullptr;
+std::shared_ptr<Object> Scene::get_object(const std::string& name) {
+    return objects[name];
 }
 
-void Scene::add_object(std::shared_ptr<Object> object) {
-    objects->add(object);
+std::map<std::string, std::shared_ptr<Object>>::iterator Scene::begin() {
+    return objects.begin();
 }
 
-void Scene::remove_object(size_t id) {
-    if (id == active_object->get_id())
+std::map<std::string, std::shared_ptr<Object>>::iterator Scene::end() {
+    return objects.end();
+}
+
+void Scene::add_object(std::shared_ptr<Object> object, const std::string& name) {
+    objects[name] = object;
+
+    active_object = object;
+    active_object_name = name;
+}
+
+void Scene::remove_object(const std::string& name) {
+    objects.erase(name);
+
+    if (objects.size() == 0) {
+        active_object_name = "";
         active_object = nullptr;
-    for (auto i = objects->begin(); i != objects->end(); i++)
-        if (i->first == id) {
-            objects->remove(i);
-            return;
-        }
+    }
 }
 
-ObjectComposite::iterator Scene::begin() {
-    return objects->begin();
-}
 
-ObjectComposite::iterator Scene::end() {
-    return objects->end();
-}
-
-std::shared_ptr<ObjectComposite> Scene::get_objects() {
+std::map<std::string, std::shared_ptr<Object>>& Scene::get_objects() {
     return objects;
 }
 
@@ -47,7 +42,13 @@ std::shared_ptr<Object> Scene::get_active_object() {
 }
 
 void Scene::set_active_object(std::shared_ptr<Object> object) {
-    active_object = object;
+    for (auto &[key, value] : objects)
+        if (object == value) {
+            active_object = value;
+            active_object_name = key;
+        }
+}
 
-    add_object(active_object);
+std::string& Scene::get_active_object_name() {
+    return active_object_name;
 }

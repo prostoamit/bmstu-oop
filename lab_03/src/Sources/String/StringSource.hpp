@@ -9,7 +9,7 @@ class StringSource : public Source {
 public:
     StringSource(std::shared_ptr<std::string> string);
 
-    const std::string read_line(size_t bytes) override;
+    const std::string read_line(size_t bytes, char separator) override;
     virtual void reset() override;
 private:
     std::shared_ptr<std::string> string;

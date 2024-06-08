@@ -7,7 +7,7 @@ class Source {
 public:
     virtual ~Source() = default;
 
-    virtual const std::string read_line(size_t bytes) = 0;
+    virtual const std::string read_line(size_t bytes, char separator = '\n') = 0;
 
     virtual void reset() = 0;
 };

@@ -7,7 +7,7 @@ void StringSource::validate_offset() {
     if (offset > string->length())
         offset = string->length();
 }
-const std::string StringSource::read_line(size_t bytes) {
+const std::string StringSource::read_line(size_t bytes, char separator) {
     std::string res = string->substr(offset, bytes);
 
     offset += bytes;

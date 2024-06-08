@@ -12,5 +12,5 @@ void ModelMoveCommand::execute() {
     size_t active_id = scene_manager->get_active_object()->get_id();
 
     auto transform_manager = ManagerSolution::get_transform_manager();
-    transform_manager->move(active_id, x_delta, y_delta, z_delta);
+    transform_manager->move(scene_manager->get_scene()->get_active_object_name(), x_delta, y_delta, z_delta);
 }

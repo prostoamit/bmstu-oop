@@ -12,5 +12,5 @@ void ModelScaleCommand::execute() {
     size_t active_id = scene_manager->get_active_object()->get_id();
 
     auto transform_manager = ManagerSolution::get_transform_manager();
-    transform_manager->scale(active_id, x_coefficient, y_coefficient, z_coefficient);
+    transform_manager->scale(scene_manager->get_scene()->get_active_object_name(), x_coefficient, y_coefficient, z_coefficient);
 }

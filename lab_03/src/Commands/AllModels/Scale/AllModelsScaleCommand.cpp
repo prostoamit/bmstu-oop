@@ -10,9 +10,8 @@ AllModelsScaleCommand::AllModelsScaleCommand(double x_coefficient, double y_coef
 void AllModelsScaleCommand::execute() {
     auto scene_manager = ManagerSolution::get_scene_manager();
     auto scene = scene_manager->get_scene();
-    auto composite_id = scene->get_objects()->get_id();
-
 
     auto transform_manager = ManagerSolution::get_transform_manager();
-    transform_manager->scale(composite_id, x_coefficient, y_coefficient, z_coefficient);
+    for (auto &[key, object] : *scene)
+        transform_manager->scale(key, x_coefficient, y_coefficient, z_coefficient);
 }
