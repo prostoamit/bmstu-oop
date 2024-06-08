@@ -6,10 +6,10 @@
 
 #include "Commands/Commands.hpp"
 
-#include "Managers/ManagerSolution.hpp"
-#include "Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.hpp"
+#include "ManagerSolution.hpp"
+#include "QtShapeDrawerFactory.hpp"
 
-#include "Creators/Objects/Cameras/CameraSolution.hpp"
+#include "CameraSolution.hpp"
 
 #include "Geometry/Vector.hpp"
 
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
         :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
-        logic(std::make_shared<Logic>()) {
+        logic(std::make_shared<AppLogic>()) {
     ui->setupUi(this);
     painter.setPen(QPen(Qt::black, 3));
 
@@ -177,37 +177,37 @@ void MainWindow::show_error(const char* message) {
 
 
 void MainWindow::on_CameraMoveUpButton_clicked() {
-    logic->move_camera(0, -10.0, 0);
+    logic->move_camera(0, -5.0, 0);
 }
 
 
 void MainWindow::on_CameraMoveLeftButton_clicked() {
-    logic->move_camera(-10.0, 0, 0);
+    logic->move_camera(-5.0, 0, 0);
 }
 
 
 void MainWindow::on_CameraMoveDownButton_clicked() {
-    logic->move_camera(0, 10.0, 0);
+    logic->move_camera(0, 5.0, 0);
 }
 
 
 void MainWindow::on_CameraMoveRightButton_clicked() {
-    logic->move_camera(10.0, 0, 0);
+    logic->move_camera(5.0, 0, 0);
 }
 
 
 void MainWindow::on_CameraRotateLeftButton_clicked() {
-    logic->rotate_camera(0.0, -10, 0.0);
+    logic->rotate_camera(0.0, -5.0, 0.0);
 }
 
 
 void MainWindow::on_CameraRotateUpButton_clicked() {
-    logic->rotate_camera(10.0, 0.0, 0.0);
+    logic->rotate_camera(5.0, 0.0, 0.0);
 }
 
 
 void MainWindow::on_CameraRotateRightButton_clicked() {
-    logic->rotate_camera(0.0, 10.0, 0.0);
+    logic->rotate_camera(0.0, 5.0, 0.0);
 }
 
 
@@ -218,7 +218,7 @@ void MainWindow::on_CameraRotateDownButton_clicked() {
 
 void MainWindow::on_CameraRotateeDownButton_clicked()
 {
-    logic->rotate_camera(-10.0, 0.0, 0.0);
+    logic->rotate_camera(-5.0, 0.0, 0.0);
 }
 
 

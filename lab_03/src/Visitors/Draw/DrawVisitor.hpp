@@ -12,7 +12,7 @@ class DrawVisitor : public Visitor {
 public:
     DrawVisitor(std::shared_ptr<Drawer::Line> line_drawer, std::shared_ptr<Camera> camera);
 
-    virtual void visit(CompositeObject& composite) override;
+    virtual void visit(ObjectComposite& composite) override;
     virtual void visit(WireframeModel::WireframeModel& model) override;
     virtual void visit(ParallelProjectionCamera& camera) override;
 

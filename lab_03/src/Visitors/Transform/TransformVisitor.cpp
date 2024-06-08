@@ -6,7 +6,7 @@
 
 TransformVisitor::TransformVisitor(std::shared_ptr<Transformers::Transformer> transformer) : transformer(std::move(transformer)) {}
 
-void TransformVisitor::visit(CompositeObject &composite) {
+void TransformVisitor::visit(ObjectComposite &composite) {
     for (auto& i : composite)
         i.second->accept(shared_from_this());
 }

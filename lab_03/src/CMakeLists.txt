@@ -13,6 +13,95 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories(
+        Commands
+        Common
+
+        Creators
+        Creators/DrawerFactories
+        Creators/DrawerFactories/QtDrawerFactory
+        Creators/Managers/Camera
+        Creators/Managers/Draw
+        Creators/Managers/History
+        Creators/Managers/Load
+        Creators/Managers/Scene
+        Creators/Managers/Transform
+
+        Creators/Transformations
+        Creators/Transformations/MoveCreator
+        Creators/Transformations/RotateCreator
+        Creators/Transformations/ScaleCreator
+
+        Creators/Objects
+        Creators/Objects/Visible
+        Creators/Objects/Visible/Models
+        Creators/Objects/Visible/Models/WireframeModel
+        Creators/Objects/Visible/Models/WireframeModel/Builders
+        Creators/Objects/Visible/Models/WireframeModel/Builders/AdjacencyList
+        Creators/Objects/Visible/Models/WireframeModel/Builders/Matrix
+        Creators/Objects/Visible/Models/WireframeModel/Builders/VerticesPairs
+        Creators/Objects/Visible/Models/WireframeModel/Sources
+        Creators/Objects/Visible/Models/WireframeModel/Sources/String
+        Creators/Objects/Visible/Models/WireframeModel/Sources/Txt
+
+        Creators/Objects/Invisible
+        Creators/Objects/Invisible/Cameras
+        Creators/Objects/Invisible/Cameras/ParallelProjection
+
+
+        Drawer/Line
+        Drawer/Line/QtLineDrawer
+        Drawer/ScreenCleaner
+        Drawer/ScreenCleaner/QtScreenCleaner
+
+        Exceptions
+        Exceptions/Models
+        Exceptions/Scene
+        Exceptions/Scene/NoModel
+
+        Geometry
+
+        Managers
+        Managers/CameraManager
+        Managers/DrawManager
+        Managers/HistoryManager
+        Managers/LoadManager
+        Managers/SceneManager
+        Managers/TransformManager
+
+        Objects
+        Objects/CareTaker
+        Objects/Composite
+        Objects/Invisible
+        Objects/Invisible/Cameras
+        Objects/Invisible/Cameras/ParallelProjectionCamera
+        Objects/Visible
+        Objects/Visible/Models
+        Objects/Visible/Models/WireframeModel
+        Objects/Visible/Models/WireframeModel/Implementation
+        Objects/Visible/Models/WireframeModel/Implementation/AdjacencyList
+        Objects/Visible/Models/WireframeModel/Implementation/Matrix
+        Objects/Visible/Models/WireframeModel/Implementation/VerticesPairs
+        Objects/Visible/Models/WireframeModel/Sources
+        Objects/Visible/Models/WireframeModel/Sources/String
+        Objects/Visible/Models/WireframeModel/Sources/TxtFile
+
+        QtInterface
+        QtInterface/AppLogic
+
+        Scene
+
+        Sources
+        Sources/Txt
+        Sources/String
+
+        Transformations
+        Transformations/Rotation
+        Transformations/Move
+        Transformations/Scale
+
+        Visitors
+        Visitors/Draw
+        Visitors/Transform
         .
 )
 
@@ -21,10 +110,11 @@ set(PROJECT_SOURCES
         QtInterface/mainwindow.cpp
         QtInterface/mainwindow.h
         QtInterface/mainwindow.ui
+
         Objects/Object.hpp
         Objects/Object.cpp
-        Objects/Composite/CompositeObject.hpp
-        Objects/Composite/CompositeObject.cpp
+        Objects/Composite/ObjectComposite.hpp
+        Objects/Composite/ObjectComposite.cpp
         Objects/Visible/VisibleObject.hpp
         Objects/Visible/VisibleObject.cpp
         Objects/Invisible/InvisibleObject.hpp
@@ -47,6 +137,17 @@ set(PROJECT_SOURCES
         Objects/Visible/Models/WireframeModel/Implementation/Matrix/Matrix.hpp
         Objects/Visible/Models/WireframeModel/Implementation/AdjacencyList/AdjacencyList.cpp
         Objects/Visible/Models/WireframeModel/Implementation/AdjacencyList/AdjacencyList.hpp
+        Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceAdapter.hpp
+        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxtAdapter.cpp
+        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxtAdapter.hpp
+        Objects/Invisible/Cameras/Camera.hpp
+        Objects/Invisible/Cameras/Camera.cpp
+        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.hpp
+        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.cpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceStringAdapter.cpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceStringAdapter.hpp
+        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceStringAdapter.hpp
+
         Geometry/Point.hpp
         Geometry/Point.cpp
         Geometry/TransformationMatrix.cpp
@@ -55,113 +156,27 @@ set(PROJECT_SOURCES
         Geometry/Vector.hpp
         Geometry/Point2D.cpp
         Geometry/Point2D.hpp
+
         Visitors/Visitor.hpp
         Visitors/Transform/TransformVisitor.hpp
         Visitors/Transform/TransformVisitor.cpp
         Visitors/Draw/DrawVisitor.cpp
         Visitors/Draw/DrawVisitor.hpp
-        Objects/Invisible/Cameras/Camera.hpp
-        Objects/Invisible/Cameras/Camera.cpp
-        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.hpp
-        Objects/Invisible/Cameras/ParallelProjectionCamera/ParallelProjectionCamera.cpp
+
         Transformations/Transformer.hpp
+        Transformations/Transformer.cpp
         Transformations/Rotation/Rotate.cpp
         Transformations/Rotation/Rotate.hpp
         Transformations/Move/Move.cpp
         Transformations/Move/Move.hpp
         Transformations/Scale/Scale.cpp
         Transformations/Scale/Scale.hpp
+
         Commands/Command.hpp
         Commands/Model/ModelCommand.hpp
         Commands/History/HistoryCommand.hpp
         Commands/Camera/CameraCommand.hpp
         Commands/Scene/SceneCommand.hpp
-        Managers/ManagerSolution.cpp
-        Managers/ManagerSolution.hpp
-        Managers/HistoryManager/HistoryManager.cpp
-        Managers/HistoryManager/HistoryManager.hpp
-        Managers/SceneManager/SceneManager.cpp
-        Managers/SceneManager/SceneManager.hpp
-        Scene/Scene.cpp
-        Scene/Scene.hpp
-        Common/Container.inl
-        Common/Container.hpp
-        Common/Concepts.hpp
-        Drawer/ScreenCleaner/ScreenCleaner.hpp
-        Drawer/Line/LineDrawer.hpp
-        Drawer/Line/QtLineDrawer/QtLineDrawer.cpp
-        Drawer/Line/QtLineDrawer/QtLineDrawer.hpp
-        Creators/DrawerFactories/ShapeDrawerFactory.hpp
-        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.cpp
-        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.hpp
-        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.cpp
-        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.hpp
-        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilder.cpp
-        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilder.hpp
-        Objects/Visible/Models/WireframeModel/Sources/WireframeModelSource.hpp
-        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.cpp
-        Objects/Visible/Models/WireframeModel/Sources/TxtFile/WireframeModelSourceTxt.hpp
-        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.cpp
-        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp
-        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.cpp
-        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp
-        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.cpp
-        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp
-        Creators/Transformations/TransformationCreator.hpp
-        Creators/Transformations/TransformationSolution.cpp
-        Creators/Transformations/TransformationSolution.hpp
-        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceCreator.hpp
-        Creators/Objects/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.cpp
-        Creators/Objects/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp
-        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceSolution.cpp
-        Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceSolution.hpp
-        Creators/Objects/Models/WireframeModel/WireframeModelCreator.cpp
-        Creators/Objects/Models/WireframeModel/WireframeModelCreator.hpp
-        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderSolution.cpp
-        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderSolution.hpp
-        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.cpp
-        Creators/Objects/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp
-        Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderCreator.hpp
-        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.cpp
-        Creators/Objects/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp
-        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.cpp
-        Creators/Objects/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp
-        Transformations/Transformer.cpp
-        Creators/Transformations/MoveCreator/MoveCreator.cpp
-        Creators/Transformations/MoveCreator/MoveCreator.hpp
-        Creators/Transformations/MoveCreator/MoveCreator.hpp
-        Creators/Transformations/ScaleCreator/ScaleCreator.cpp
-        Creators/Transformations/ScaleCreator/ScaleCreator.hpp
-        Creators/Transformations/RotateCreator/RotateCreator.cpp
-        Creators/Transformations/RotateCreator/RotateCreator.hpp
-        Managers/LoadManager/LoadManager.cpp
-        Managers/LoadManager/LoadManager.hpp
-        Managers/TransformManager/TransformManager.cpp
-        Managers/TransformManager/TransformManager.hpp
-        Managers/DrawManager/DrawManager.cpp
-        Managers/DrawManager/DrawManager.hpp
-        Creators/Managers/History/HistoryManagerCreator.cpp
-        Creators/Managers/History/HistoryManagerCreator.hpp
-        Creators/Managers/Scene/SceneManagerCreator.cpp
-        Creators/Managers/Scene/SceneManagerCreator.hpp
-        Creators/Managers/Transform/TransformManagerCreator.cpp
-        Creators/Managers/Transform/TransformManagerCreator.hpp
-        Creators/Managers/Draw/DrawManagerCreator.cpp
-        Creators/Managers/Draw/DrawManagerCreator.hpp
-        Creators/Managers/Load/LoadManagerCreator.cpp
-        Creators/Managers/Load/LoadManagerCreator.hpp
-        Managers/CameraManager/CameraManager.cpp
-        Managers/CameraManager/CameraManager.hpp
-        Scene/Cameras.cpp
-        Scene/Cameras.hpp
-        Creators/Managers/Camera/CameraManagerCreator.cpp
-        Creators/Managers/Camera/CameraManagerCreator.hpp
-        Creators/Objects/Cameras/CameraCreator.cpp
-        Creators/Objects/Cameras/CameraCreator.hpp
-        Creators/Objects/Cameras/ParallelProjection/ParallelProjectionCameraCreator.cpp
-        Creators/Objects/Cameras/ParallelProjection/ParallelProjectionCameraCreator.hpp
-        Creators/Objects/Cameras/CameraSolution.cpp
-        Creators/Objects/Cameras/CameraSolution.hpp
         Commands/Model/Move/ModelMoveCommand.cpp
         Commands/Model/Move/ModelMoveCommand.hpp
         Commands/Command.cpp
@@ -186,8 +201,6 @@ set(PROJECT_SOURCES
         Commands/Camera/CameraCommands.hpp
         Commands/Model/ModelCommands.hpp
         Commands/Commands.hpp
-        QtInterface/AppLogic/Logic.cpp
-        QtInterface/AppLogic/Logic.hpp
         Commands/Model/Remove/RemoveModelCommand.cpp
         Commands/Model/Remove/RemoveModelCommand.hpp
         Commands/Scene/Draw/DrawSceneCommand.cpp
@@ -201,19 +214,126 @@ set(PROJECT_SOURCES
         Commands/AllModels/Scale/AllModelsScaleCommand.cpp
         Commands/AllModels/Scale/AllModelsScaleCommand.hpp
         Commands/AllModels/AllModelsCommands.hpp
+        Commands/Scene/SetActiveModel/SetActiveModelCommand.cpp
+        Commands/Scene/SetActiveModel/SetActiveModelCommand.hpp
+
+        Managers/ManagerSolution.cpp
+        Managers/ManagerSolution.hpp
+        Managers/HistoryManager/HistoryManager.cpp
+        Managers/HistoryManager/HistoryManager.hpp
+        Managers/SceneManager/SceneManager.cpp
+        Managers/SceneManager/SceneManager.hpp
+        Managers/LoadManager/LoadManager.cpp
+        Managers/LoadManager/LoadManager.hpp
+        Managers/TransformManager/TransformManager.cpp
+        Managers/TransformManager/TransformManager.hpp
+        Managers/DrawManager/DrawManager.cpp
+        Managers/DrawManager/DrawManager.hpp
+        Managers/CameraManager/CameraManager.cpp
+        Managers/CameraManager/CameraManager.hpp
+
+        Scene/Scene.cpp
+        Scene/Scene.hpp
+        Scene/Cameras.cpp
+        Scene/Cameras.hpp
+
+        Common/Container.inl
+        Common/Container.hpp
+        Common/Concepts.hpp
+
+        Drawer/ScreenCleaner/ScreenCleaner.hpp
+        Drawer/Line/LineDrawer.hpp
+        Drawer/Line/QtLineDrawer/QtLineDrawer.cpp
+        Drawer/Line/QtLineDrawer/QtLineDrawer.hpp
+        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.cpp
+        Drawer/ScreenCleaner/QtScreenCleaner/QtScreenCleaner.hpp
+
+        Creators/DrawerFactories/ShapeDrawerFactory.hpp
+        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.cpp
+        Creators/DrawerFactories/QtDrawerFactory/QtShapeDrawerFactory.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/WireframeModelBuilder.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/WireframeModelBuilder.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilder.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilder.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilder.hpp
+        Creators/Transformations/TransformationCreator.hpp
+        Creators/Transformations/TransformationSolution.cpp
+        Creators/Transformations/TransformationSolution.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/Txt/TxtWireframeModelSourceCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceSolution.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/WireframeModelSourceSolution.hpp
+        Creators/Objects/Visible/Models/WireframeModel/WireframeModelDirector.cpp
+        Creators/Objects/Visible/Models/WireframeModel/WireframeModelDirector.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/WireframeModelBuilderSolution.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/WireframeModelBuilderSolution.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/AdjacencyList/AdjacencyListWireframeModelBuilderCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/WireframeModelBuilderCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/Matrix/MatrixWireframeModelBuilderCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Builders/VerticesPairs/VerticesPairsWireframeModelBuilderCreator.hpp
+        Creators/Transformations/MoveCreator/MoveCreator.cpp
+        Creators/Transformations/MoveCreator/MoveCreator.hpp
+        Creators/Transformations/MoveCreator/MoveCreator.hpp
+        Creators/Transformations/ScaleCreator/ScaleCreator.cpp
+        Creators/Transformations/ScaleCreator/ScaleCreator.hpp
+        Creators/Transformations/RotateCreator/RotateCreator.cpp
+        Creators/Transformations/RotateCreator/RotateCreator.hpp
+        Creators/Managers/History/HistoryManagerCreator.cpp
+        Creators/Managers/History/HistoryManagerCreator.hpp
+        Creators/Managers/Scene/SceneManagerCreator.cpp
+        Creators/Managers/Scene/SceneManagerCreator.hpp
+        Creators/Managers/Transform/TransformManagerCreator.cpp
+        Creators/Managers/Transform/TransformManagerCreator.hpp
+        Creators/Managers/Draw/DrawManagerCreator.cpp
+        Creators/Managers/Draw/DrawManagerCreator.hpp
+        Creators/Managers/Load/LoadManagerCreator.cpp
+        Creators/Managers/Load/LoadManagerCreator.hpp
+        Creators/Managers/Camera/CameraManagerCreator.cpp
+        Creators/Managers/Camera/CameraManagerCreator.hpp
+        Creators/Objects/Invisible/Cameras/CameraCreator.cpp
+        Creators/Objects/Invisible/Cameras/CameraCreator.hpp
+        Creators/Objects/Invisible/Cameras/ParallelProjection/ParallelProjectionCameraCreator.cpp
+        Creators/Objects/Invisible/Cameras/ParallelProjection/ParallelProjectionCameraCreator.hpp
+        Creators/Objects/Invisible/Cameras/CameraSolution.cpp
+        Creators/Objects/Invisible/Cameras/CameraSolution.hpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.cpp
+        Creators/Objects/Visible/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.hpp
+
+        QtInterface/AppLogic/AppLogic.cpp
+        QtInterface/AppLogic/AppLogic.hpp
+        QtInterface/AppLogic/AppData.cpp
+        QtInterface/AppLogic/AppData.hpp
+
         Exceptions/Exception.cpp
         Exceptions/Exception.hpp
         Exceptions/Scene/NoModel/NoModelException.cpp
         Exceptions/Scene/NoModel/NoModelException.hpp
-        Commands/Scene/SetActiveModel/SetActiveModelCommand.cpp
-        Commands/Scene/SetActiveModel/SetActiveModelCommand.hpp
-        QtInterface/AppLogic/Data.cpp
-        QtInterface/AppLogic/Data.hpp
-        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.cpp
-        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
-        Objects/Visible/Models/WireframeModel/Sources/String/WireframeModelSourceString.hpp
-        Creators/Objects/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.cpp
-        Creators/Objects/Models/WireframeModel/Sources/String/StringWireframeModelSourceCreator.hpp
+
+        Sources/Source.cpp
+        Sources/Source.hpp
+        Creators/Objects/ObjectCreator.cpp
+        Creators/Objects/ObjectCreator.hpp
+        Creators/Objects/Visible/Models/ModelCreator.cpp
+        Creators/Objects/Visible/Models/ModelCreator.hpp
+        Creators/Objects/Visible/Models/WireframeModel/WireframeModelDirectorSolution.cpp
+        Creators/Objects/Visible/Models/WireframeModel/WireframeModelDirectorSolution.hpp
+        Creators/Objects/Visible/VisibleObjectCreator.cpp
+        Creators/Objects/Visible/VisibleObjectCreator.hpp
+        Creators/Objects/Invisible/InvisibleObjectCreator.cpp
+        Creators/Objects/Invisible/InvisibleObjectCreator.hpp
+        Creators/Objects/Visible/Models/ModelSolution.cpp
+        Creators/Objects/Visible/Models/ModelSolution.hpp
+        Sources/Txt/TxtFileSource.cpp
+        Sources/Txt/TxtFileSource.hpp
+        Sources/String/StringSource.cpp
+        Sources/String/StringSource.hpp
 )
 
 # Add GoogleTest

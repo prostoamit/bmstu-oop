@@ -10,7 +10,7 @@ class TransformVisitor : public Visitor {
 public:
     TransformVisitor(std::shared_ptr<Transformers::Transformer> transformer);
 
-    virtual void visit(CompositeObject& composite) override;
+    virtual void visit(ObjectComposite& composite) override;
     virtual void visit(WireframeModel::WireframeModel& model) override;
     virtual void visit(ParallelProjectionCamera& camera) override;
 private:

@@ -3,11 +3,11 @@
 
 #include <memory>
 
-#include "Objects/Composite/CompositeObject.hpp"
+#include "Objects/Composite/ObjectComposite.hpp"
 
 class ObjectMemento {
 public:
-    ObjectMemento(std::shared_ptr<CompositeObject> object);
+    ObjectMemento(std::shared_ptr<ObjectComposite> object);
 private:
 };
 

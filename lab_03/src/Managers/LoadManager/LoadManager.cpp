@@ -4,9 +4,9 @@
 
 #include "Managers/ManagerSolution.hpp"
 
-#include "Creators/Objects/Models/WireframeModel/Builders/WireframeModelBuilderSolution.hpp"
-#include "Creators/Objects/Models/WireframeModel/WireframeModelCreator.hpp"
-#include "Creators/Objects/Models/WireframeModel/Sources/WireframeModelSourceSolution.hpp"
+#include "WireframeModelBuilderSolution.hpp"
+#include "WireframeModelSourceSolution.hpp"
+#include "WireframeModelDirectorSolution.hpp"
 
 size_t LoadManager::load_wireframe_model(const std::string& path, const std::string& implementation_type) {
     std::filesystem::path p(path);
@@ -20,9 +20,8 @@ size_t LoadManager::load_wireframe_model(const std::string& path, const std::str
     auto builder_creator = WireframeModel::BuilderSolution::get(implementation_type);
     auto builder = builder_creator->create(source);
 
-    auto model_director = WireframeModel::Creator(builder);
-
-    auto model = model_director.create();
+    auto model_director = WireframeModel::DirectorSolution::get(builder);
+    auto model = model_director->create();
 
     scene_manager->set_active_object(model);
 

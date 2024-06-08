@@ -8,7 +8,7 @@
 #include <QPainter>
 #include <QGraphicsScene>
 
-#include "QtInterface/AppLogic/Logic.hpp"
+#include "QtInterface/AppLogic/AppLogic.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -80,6 +80,6 @@ private:
     QPainter painter;
 
     std::shared_ptr<QGraphicsScene> scene;
-    std::shared_ptr<Logic> logic;
+    std::shared_ptr<AppLogic> logic;
 };
 #endif // MAINWINDOW_H

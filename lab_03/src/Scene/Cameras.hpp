@@ -4,7 +4,7 @@
 #include <memory>
 #include <map>
 
-#include "Objects/Composite/CompositeObject.hpp"
+#include "Objects/Composite/ObjectComposite.hpp"
 #include "Objects/Invisible/Cameras/Camera.hpp"
 
 #include "Common/Container.hpp"

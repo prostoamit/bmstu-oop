@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Objects/Composite/CompositeObject.hpp"
+#include "Objects/Composite/ObjectComposite.hpp"
 
 class Scene {
 public:
@@ -15,13 +15,13 @@ public:
     void add_object(std::shared_ptr<Object> object);
     void remove_object(size_t id);
 
-    CompositeObject::iterator begin();
-    CompositeObject::iterator end();
+    ObjectComposite::iterator begin();
+    ObjectComposite::iterator end();
 
-    std::shared_ptr<CompositeObject> get_objects();
+    std::shared_ptr<ObjectComposite> get_objects();
 
 private:
-    std::shared_ptr<CompositeObject> objects;
+    std::shared_ptr<ObjectComposite> objects;
     std::shared_ptr<Object> active_object;
 };
 

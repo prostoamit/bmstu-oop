@@ -3,7 +3,7 @@
 #include <algorithm>
 
 Scene::Scene() :
-        objects(std::make_shared<CompositeObject>()) {}
+        objects(std::make_shared<ObjectComposite>()) {}
 
 std::shared_ptr<Object> Scene::get_object(size_t id) {
     if (id == objects->get_id())
@@ -30,15 +30,15 @@ void Scene::remove_object(size_t id) {
         }
 }
 
-CompositeObject::iterator Scene::begin() {
+ObjectComposite::iterator Scene::begin() {
     return objects->begin();
 }
 
-CompositeObject::iterator Scene::end() {
+ObjectComposite::iterator Scene::end() {
     return objects->end();
 }
 
-std::shared_ptr<CompositeObject> Scene::get_objects() {
+std::shared_ptr<ObjectComposite> Scene::get_objects() {
     return objects;
 }
 
