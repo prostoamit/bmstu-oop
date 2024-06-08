@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 
-#include "Objects/Composite/ObjectComposite.hpp"
+#include "ObjectComposite.hpp"
 
 class Scene {
 public:
