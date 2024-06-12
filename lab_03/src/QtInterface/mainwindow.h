@@ -67,6 +67,10 @@ private slots:
 
     void on_CameraRotateeDownButton_clicked();
 
+    void on_RedoButton_clicked();
+
+    void on_UndoButton_clicked();
+
 private:
 
     void show_error(const char *message);

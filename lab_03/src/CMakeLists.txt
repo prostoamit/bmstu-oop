@@ -14,6 +14,30 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 include_directories(
         Commands
+        Commands/AllModels
+        Commands/AllModels/Move
+        Commands/AllModels/Rotate
+        Commands/AllModels/Scale
+        Commands/Camera
+        Commands/Camera/Add
+        Commands/Camera/Move
+        Commands/Camera/Remove
+        Commands/Camera/Rotate
+        Commands/Camera/Set
+        Commands/History
+        Commands/History/Redo
+        Commands/History/Save
+        Commands/History/Undo
+        Commands/Model
+        Commands/Model/Load
+        Commands/Model/Move
+        Commands/Model/Remove
+        Commands/Model/Rotate
+        Commands/Model/Scale
+        Commands/Scene
+        Commands/Scene/SetActiveModel
+        Commands/Scene/Draw
+
         Common
 
         Creators
@@ -57,6 +81,8 @@ include_directories(
         Exceptions/Models
         Exceptions/Scene
         Exceptions/Scene/NoModel
+        Exceptions/History
+        Exceptions/History/NoMementoException
 
         Geometry
 
@@ -334,6 +360,15 @@ set(PROJECT_SOURCES
         Sources/Txt/TxtFileSource.hpp
         Sources/String/StringSource.cpp
         Sources/String/StringSource.hpp
+        Commands/History/Save/SaveCommand.cpp
+        Commands/History/Save/SaveCommand.hpp
+        Commands/History/Undo/UndoCommand.cpp
+        Commands/History/Undo/UndoCommand.hpp
+        Commands/History/Redo/RedoCommand.cpp
+        Commands/History/Redo/RedoCommand.hpp
+        Commands/History/HistoryCommands.hpp
+        Exceptions/History/NoMementoException/NoMementoException.cpp
+        Exceptions/History/NoMementoException/NoMementoException.hpp
 )
 
 # Add GoogleTest

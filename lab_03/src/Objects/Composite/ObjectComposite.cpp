@@ -1,5 +1,9 @@
 #include "ObjectComposite.hpp"
 
+ObjectComposite::ObjectComposite(const ObjectComposite& other) {
+    for (auto& [key, value] : other.container)
+        container[key] = value->clone();
+}
 
 bool ObjectComposite::is_composite() const {
     return true;
@@ -26,10 +30,11 @@ void ObjectComposite::accept(std::shared_ptr<Visitor> visitor) {
         object.second->accept(visitor);
 }
 
-ObjectComposite::ObjectComposite(const ObjectComposite &other) {
 
-}
+//std::shared_ptr<ObjectMemento> ObjectComposite::create_memento() const {
+//    return std::make_shared<ObjectMemento>(this->clone());
+//}
 
-ObjectComposite::ObjectComposite() {
-    container.clear();
+std::shared_ptr<Object> ObjectComposite::clone() const {
+    return std::make_shared<ObjectComposite>(*this);
 }

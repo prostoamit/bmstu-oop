@@ -8,10 +8,10 @@ template <typename T>
 class Container {
 public:
     using iterator = std::vector<T>::iterator;
+    using const_iterator = std::vector<T>::const_iterator;
 
     Container() = default;
     explicit Container(const Container& other) = default;
-//    Container(Container&& other);
 
     explicit Container(const std::vector<T>& other);
 
@@ -22,6 +22,10 @@ public:
 
     iterator begin();
     iterator end();
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 
     size_t size();
 

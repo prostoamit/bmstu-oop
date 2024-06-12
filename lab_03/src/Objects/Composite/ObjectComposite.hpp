@@ -5,9 +5,9 @@
 
 class ObjectComposite : public Object {
 public:
-    ObjectComposite();
+    ObjectComposite() = default;
     ObjectComposite(const ObjectComposite& other);
-    ObjectComposite(ObjectComposite&& tmp_composite);
+    ObjectComposite(ObjectComposite&& tmp_composite) = default;
 
     virtual bool is_composite() const override;
     virtual void add(std::shared_ptr<Object> object) override;
@@ -17,6 +17,10 @@ public:
     virtual Object::iterator end() override;
 
     virtual void accept(std::shared_ptr<Visitor> visitor) override;
+
+//    virtual std::shared_ptr<ObjectMemento> create_memento() const override;
+
+    virtual std::shared_ptr<Object> clone() const override;
 protected:
     Object::container container;
 };

@@ -8,6 +8,9 @@ ModelScaleCommand::ModelScaleCommand(double x_coefficient, double y_coefficient,
         z_coefficient(z_coefficient) {}
 
 void ModelScaleCommand::execute() {
+    auto history_manager = ManagerSolution::get_history_manager();
+    history_manager->save_state();
+
     auto scene_manager = ManagerSolution::get_scene_manager();
     size_t active_id = scene_manager->get_active_object()->get_id();
 

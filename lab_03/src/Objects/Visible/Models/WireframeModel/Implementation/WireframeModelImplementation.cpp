@@ -2,6 +2,11 @@
 
 using namespace WireframeModel;
 
+Implementation::Implementation(const Implementation& other) {
+    for (auto& i : other.vertices)
+        vertices.push_back(std::make_shared<Point>(*i));
+}
+
 void Implementation::add_vertex(std::shared_ptr<Point> vertex) {
     vertices.push_back(vertex);
 }

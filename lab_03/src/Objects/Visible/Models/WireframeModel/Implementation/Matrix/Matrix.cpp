@@ -4,6 +4,10 @@
 
 using namespace WireframeModel;
 
+Matrix::Matrix(const WireframeModel::Matrix& other) :
+        Implementation(other),
+        matrix(other.matrix) {}
+
 void Matrix::add_edge(std::shared_ptr<Edge> edge) {
     while (vertices.size() > matrix.size()) {
         matrix.resize(vertices.size());
@@ -40,4 +44,8 @@ Matrix::Matrix(Container<std::shared_ptr<Point>>& _vertices, Container<std::shar
 
     for (auto& i : _edges)
         this->add_edge(i);
+}
+
+std::shared_ptr<Implementation> Matrix::clone() {
+    return std::make_shared<Matrix>(*this);
 }

@@ -3,6 +3,6 @@
 
 #include "Command.hpp"
 
-class HistoryCommand : Command {};
+class HistoryCommand : public Command {};
 
 #endif //HISTORYCOMMAND_HPP

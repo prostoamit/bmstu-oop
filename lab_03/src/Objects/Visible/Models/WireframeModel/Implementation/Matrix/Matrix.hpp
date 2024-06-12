@@ -9,7 +9,7 @@ namespace WireframeModel {
     class Matrix : public Implementation {
     public:
         Matrix() = default;
-        Matrix(const Matrix& other) = default;
+        Matrix(const Matrix& other);
         Matrix(Matrix&& other) = default;
 
         Matrix(Container<std::shared_ptr<Point>>& vertices, Container<std::shared_ptr<Edge>>& edges);
@@ -17,6 +17,8 @@ namespace WireframeModel {
         virtual void add_edge(std::shared_ptr<Edge> edge) override;
 
         virtual Container<std::shared_ptr<Edge>> &get_edges() override;
+
+        virtual std::shared_ptr<Implementation> clone() override;
 
     private:
         std::vector<std::vector<bool>> matrix;

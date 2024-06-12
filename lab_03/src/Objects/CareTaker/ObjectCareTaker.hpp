@@ -2,17 +2,19 @@
 #define OBJECTCARETAKER_HPP
 
 #include <memory>
-#include <list>
-#include <stack>
+#include <vector>
 
 #include "ObjectMemento.hpp"
 
 class ObjectCareTaker {
 public:
-    void set(std::unique_ptr<ObjectMemento> memento);
-    std::unique_ptr<ObjectMemento> get();
+    ObjectCareTaker() = default;
+    void add(std::shared_ptr<ObjectMemento> memento);
+    std::shared_ptr<ObjectMemento> undo();
+    std::shared_ptr<ObjectMemento> redo();
 private:
-    std::stack<std::unique_ptr<ObjectMemento>> mementos;
+    std::vector<std::shared_ptr<ObjectMemento>> mementos;
+    size_t current_memento;
 };
 
 

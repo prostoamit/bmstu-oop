@@ -32,6 +32,27 @@ Container<T>::iterator Container<T>::end() {
 }
 
 template<typename T>
+Container<T>::const_iterator Container<T>::begin() const {
+    return data.begin();
+}
+
+template<typename T>
+Container<T>::const_iterator Container<T>::end() const {
+    return data.end();
+}
+
+template<typename T>
+Container<T>::const_iterator Container<T>::cbegin() const {
+    return data.cbegin();
+}
+
+template<typename T>
+Container<T>::const_iterator Container<T>::cend() const {
+    return data.cend();
+}
+
+
+template<typename T>
 size_t Container<T>::size() {
     return data.size();
 }

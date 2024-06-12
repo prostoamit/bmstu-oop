@@ -216,8 +216,7 @@ void MainWindow::on_CameraRotateDownButton_clicked() {
 }
 
 
-void MainWindow::on_CameraRotateeDownButton_clicked()
-{
+void MainWindow::on_CameraRotateeDownButton_clicked() {
     logic->rotate_camera(-5.0, 0.0, 0.0);
 }
 
@@ -229,5 +228,23 @@ void MainWindow::on_ModelsComboBox_currentIndexChanged(int index) {
 
 void MainWindow::on_CamerasComboBox_currentIndexChanged(int index) {
     logic->set_active_camera(ui->CamerasComboBox->currentText().toStdString());
+}
+
+
+void MainWindow::on_RedoButton_clicked() {
+    try {
+        logic->redo();
+    }  catch (std::exception& e) {
+        show_error("Это самое ранее сохранение.");
+    }
+}
+
+
+void MainWindow::on_UndoButton_clicked() {
+    try {
+        logic->undo();
+    }  catch (std::exception& e) {
+        show_error("Это самое поздее сохранение.");
+    }
 }
 

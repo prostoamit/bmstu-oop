@@ -22,10 +22,21 @@ void Object::add(std::shared_ptr<Object> object) {}
 
 void Object::remove(Object::iterator) {}
 
-Object::iterator Object::begin() {}
+Object::iterator Object::begin() {
+    return {};
+}
 
 Object::iterator Object::end() {
     return {};
 }
 
 void Object::accept(std::shared_ptr<Visitor> visitor) {}
+
+std::shared_ptr<ObjectMemento> Object::create_memento() const {
+    return std::make_shared<ObjectMemento>(this->clone());
+}
+
+void Object::restore_memento(std::shared_ptr<ObjectMemento> memento) {};
+
+
+std::shared_ptr<Object> Object::clone() const { return nullptr; }

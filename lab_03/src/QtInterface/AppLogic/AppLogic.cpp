@@ -97,6 +97,20 @@ void AppLogic::scale_all_objects(double x_coefficient, double y_coefficient, dou
 
 }
 
+void AppLogic::undo() {
+    auto command = std::make_shared<UndoCommand>();
+
+    facade->apply(command);
+    draw();
+}
+
+void AppLogic::redo() {
+    auto command = std::make_shared<RedoCommand>();
+
+    facade->apply(command);
+    draw();
+}
+
 void AppLogic::add_camera() {
     auto command = std::make_shared<AddCameraCommand>("parallelprojection");
 

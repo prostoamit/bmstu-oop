@@ -5,6 +5,8 @@
 #include <memory>
 #include <map>
 
+#include "ObjectMemento.hpp"
+
 class Visitor;
 
 class Object {
@@ -28,8 +30,12 @@ public:
 
     virtual void accept(std::shared_ptr<Visitor> visitor) = 0;
 
-    // TODO create_memento()
-    // TODO restore_memento()
+    virtual std::shared_ptr<ObjectMemento> create_memento() const;
+    virtual void restore_memento(std::shared_ptr<ObjectMemento> memento);
+
+    virtual std::shared_ptr<Object> clone() const;
+
+//    friend Visitor;
 
 protected:
     size_t _id;

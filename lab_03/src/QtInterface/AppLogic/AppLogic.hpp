@@ -28,6 +28,9 @@ public:
     void rotate_all_objects(double x_axis_angle, double y_axis_angle, double z_axis_angle);
     void scale_all_objects(double x_coefficient, double y_coefficient, double z_coefficient);
 
+    void undo();
+    void redo();
+
     void add_camera();
     void delete_camera();
     void set_active_camera(const std::string& name);

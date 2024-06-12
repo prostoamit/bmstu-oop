@@ -13,6 +13,9 @@ namespace WireframeModel {
     class Implementation {
     public:
         virtual ~Implementation() = default;
+        Implementation() = default;
+        Implementation(const Implementation& other);
+        Implementation(Implementation&& other) = default;
 
         virtual void add_vertex(std::shared_ptr<Point> vertex);
 
@@ -21,6 +24,8 @@ namespace WireframeModel {
         virtual void add_edge(std::shared_ptr<Edge> edge) = 0;
 
         virtual Container<std::shared_ptr<Edge>> &get_edges() = 0;
+
+        virtual std::shared_ptr<Implementation> clone() = 0;
 
     protected:
         std::vector<std::shared_ptr<Point>> vertices;

@@ -30,4 +30,7 @@ void TransformManager::applyTransformation(const std::string& name, const std::s
 
     auto visitor = std::make_shared<TransformVisitor>(transformer);
     object->accept(visitor);
+
+    auto history_manager = ManagerSolution::get_history_manager();
+    history_manager->save_state();
 }

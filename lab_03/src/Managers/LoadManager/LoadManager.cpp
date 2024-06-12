@@ -26,5 +26,8 @@ size_t LoadManager::load_wireframe_model(const std::string& path, const std::str
 
     scene_manager->add_object(model, name);
 
+    auto history_manager = ManagerSolution::get_history_manager();
+    history_manager->save_state();
+
     return model->get_id();
 }

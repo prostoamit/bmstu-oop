@@ -4,9 +4,15 @@
 
 using namespace WireframeModel;
 
+AdjacencyList::AdjacencyList(const AdjacencyList& other) :
+        Implementation(other) {
+    for (auto& [key, value] : other.adjacency_list)
+        adjacency_list[key] = value;
+}
+
 void AdjacencyList::add_edge(std::shared_ptr<Edge> edge) {
     while (vertices.size() > adjacency_list.size()) {
-        adjacency_list.insert({adjacency_list.size(), std::vector<size_t>()});
+        adjacency_list.insert({ adjacency_list.size(), std::vector<size_t>() });
     }
 
     size_t position_1 = edge->get_vertex_1_position();
@@ -15,7 +21,7 @@ void AdjacencyList::add_edge(std::shared_ptr<Edge> edge) {
     adjacency_list[position_1].push_back(position_2);
 }
 
-Container<std::shared_ptr<Edge>> &AdjacencyList::get_edges() {
+Container<std::shared_ptr<Edge>>& AdjacencyList::get_edges() {
     static Container<std::shared_ptr<Edge>> edges_container;
     edges_container.clear();
 
@@ -28,4 +34,8 @@ Container<std::shared_ptr<Edge>> &AdjacencyList::get_edges() {
     }
 
     return edges_container;
+}
+
+std::shared_ptr<Implementation> AdjacencyList::clone() {
+    return std::make_shared<AdjacencyList>(*this);
 }
