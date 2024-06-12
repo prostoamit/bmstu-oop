@@ -28,7 +28,7 @@ public:
     friend std::ostream& operator <<(std::ostream& out, TransformationMatrix& matrix);
 private:
 
-    std::shared_ptr<gsl_matrix> matrix;
+    gsl_matrix *matrix;
 };
 
 
